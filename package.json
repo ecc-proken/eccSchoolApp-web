@@ -10,6 +10,14 @@
     "@types/node": "^12.20.46",
     "@types/react": "^16.14.23",
     "@types/react-dom": "^16.9.14",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.4.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.28.0",
+    "prettier": "^2.5.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
@@ -32,7 +40,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "eslint-format": "npx eslint . --ext .tsx --ext .ts --fix"
   },
   "eslintConfig": {
     "extends": [
