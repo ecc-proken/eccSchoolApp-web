@@ -1,7 +1,7 @@
-import './App.css';
 import { Route, Routes } from 'react-router-dom';
+import { VFC } from 'react';
 
-function App() {
+const App: VFC = () => {
   return (
     <div className='App'>
       <Routes>
@@ -10,6 +10,6 @@ function App() {
       </Routes>
     </div>
   );
-}
+};
 
 export default App;
