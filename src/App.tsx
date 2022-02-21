@@ -8,6 +8,10 @@ const App: VFC = () => {
         <Route path='/' element={<>Home</>} />
         <Route path='/auth' element={<>Authentication</>} />
       </Routes>
+
+      <h1 className='text-center bg-slate-400 font-bold underline'>
+        Hello world!
+      </h1>
     </div>
   );
 };
