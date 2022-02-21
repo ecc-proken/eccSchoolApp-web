@@ -1,0 +1,5 @@
+node_modules/
+.eslintrc.js
+.env
+.build
+src/serviceWorkerRegistration.ts
