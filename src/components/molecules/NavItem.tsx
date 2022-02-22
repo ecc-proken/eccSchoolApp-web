@@ -15,8 +15,8 @@ const NavItem: VFC<Props> = ({ icon, title, path, selected = false }) => {
       className={[
         'w-full uppercase flex items-center p-4 my-2 transition-colors duration-200 justify-start',
         selected
-          ? 'text-blue-500 bg-gradient-to-r from-white to-blue-100  border-r-4 border-blue-500'
-          : 'text-gray-500 hover:text-blue-500 hover:bg-gray-100',
+          ? 'text-accent bg-gradient-to-r from-white to-blue-100  border-r-4 border-accent'
+          : 'text-gray-500 hover:text-accent hover:bg-gray-100',
       ].join(' ')}
       to={path}
     >
