@@ -34,7 +34,7 @@ const Layout: VFC<Props> = ({ pageTitle, children }) => {
             <NavItem icon={faCog} title='設定' path='/' />
             {/* ログアウト */}
             <button
-              className='w-full uppercase text-gray-500 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500 hover:bg-gray-100'
+              className='w-full uppercase text-gray-500 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-accent hover:bg-gray-100'
               type='button'
             >
               <FontAwesomeIcon icon={faSignOut} className='text-xl' />

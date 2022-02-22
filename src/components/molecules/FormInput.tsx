@@ -18,7 +18,7 @@ const FormInput: VFC<Props> = ({ type, id, placeholder, name, children }) => {
         name={name}
         id={id}
         placeholder={placeholder}
-        className='block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40'
+        className='block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:ring-accent focus:outline-none focus:ring focus:ring-opacity-40'
       />
     </div>
   );
