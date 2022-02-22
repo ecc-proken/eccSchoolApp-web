@@ -1,6 +1,14 @@
 import { ReactNode, VFC } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTable, faChartLine } from '@fortawesome/free-solid-svg-icons';
+import {
+  faTable,
+  faChartLine,
+  faBell,
+  faCalendarAlt,
+  faCog,
+  faSignOut,
+} from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 type Props = {
   children: ReactNode;
@@ -53,24 +61,54 @@ const Layout: VFC<Props> = ({ children }) => {
             </svg>
           </div>
           <nav className='mt-6'>
-            <div>
-              {/* selected */}
-              <a
-                className='w-full uppercase text-blue-500 flex items-center p-4 my-2 transition-colors duration-200 justify-start bg-gradient-to-r from-white to-blue-100  border-r-4 border-blue-500'
-                href='#'
-              >
-                <FontAwesomeIcon icon={faTable} className='text-xl' />
-                <span className='mx-4 text-base font-normal'>時間割</span>
-              </a>
-              {/* default */}
-              <a
-                className='w-full uppercase text-gray-500 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500'
-                href='#'
-              >
-                <FontAwesomeIcon icon={faChartLine} className='text-xl' />
-                <span className='mx-4 text-base font-normal'>出席率</span>
-              </a>
-            </div>
+            {/* 時間割 */}
+            <Link
+              className='w-full uppercase text-blue-500 flex items-center p-4 my-2 transition-colors duration-200 justify-start bg-gradient-to-r from-white to-blue-100  border-r-4 border-blue-500'
+              to='/'
+            >
+              <FontAwesomeIcon icon={faTable} className='text-xl' />
+              <span className='mx-4 text-base font-normal'>時間割</span>
+            </Link>
+            {/* 出席率 */}
+            <Link
+              className='w-full uppercase text-gray-500 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500'
+              to='/'
+            >
+              <FontAwesomeIcon icon={faChartLine} className='text-xl' />
+              <span className='mx-4 text-base font-normal'>出席率</span>
+            </Link>
+            {/* お知らせ */}
+            <Link
+              className='w-full uppercase text-gray-500 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500'
+              to='/'
+            >
+              <FontAwesomeIcon icon={faBell} className='text-xl' />
+              <span className='mx-4 text-base font-normal'>お知らせ</span>
+            </Link>
+            {/* カレンダー */}
+            <Link
+              className='w-full uppercase text-gray-500 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500'
+              to='/'
+            >
+              <FontAwesomeIcon icon={faCalendarAlt} className='text-xl' />
+              <span className='mx-4 text-base font-normal'>カレンダー</span>
+            </Link>
+            {/* 設定 */}
+            <Link
+              className='w-full uppercase text-gray-500 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500'
+              to='/'
+            >
+              <FontAwesomeIcon icon={faCog} className='text-xl' />
+              <span className='mx-4 text-base font-normal'>設定</span>
+            </Link>
+            {/* ログアウト */}
+            <Link
+              className='w-full uppercase text-gray-500 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500'
+              to='/'
+            >
+              <FontAwesomeIcon icon={faSignOut} className='text-xl' />
+              <span className='mx-4 text-base font-normal'>ログアウト</span>
+            </Link>
           </nav>
         </div>
       </div>
