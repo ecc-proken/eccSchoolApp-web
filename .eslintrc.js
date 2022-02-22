@@ -31,10 +31,7 @@ module.exports = {
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'react/jsx-props-no-spreading': 'off',
     'react/jsx-filename-extension': ['error', { extensions: ['.jsx', '.tsx'] }],
-    'import/extensions': [
-      'error',
-      { extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'] },
-    ],
+    'import/extensions': 'off',
     'react/prop-types': 'off',
     'spaced-comment': ['error', 'always', { markers: ['/ <reference'] }],
     'prettier/prettier': 'error',
