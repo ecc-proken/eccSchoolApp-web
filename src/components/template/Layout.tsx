@@ -102,13 +102,13 @@ const Layout: VFC<Props> = ({ children }) => {
               <span className='mx-4 text-base font-normal'>設定</span>
             </Link>
             {/* ログアウト */}
-            <Link
+            <button
               className='w-full uppercase text-gray-500 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500'
-              to='/'
+              type='button'
             >
               <FontAwesomeIcon icon={faSignOut} className='text-xl' />
               <span className='mx-4 text-base font-normal'>ログアウト</span>
-            </Link>
+            </button>
           </nav>
         </div>
       </div>
