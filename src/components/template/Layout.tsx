@@ -27,11 +27,11 @@ const Layout: VFC<Props> = ({ pageTitle, children }) => {
           </div>
           <nav className='mt-6'>
             <NavItem icon={faHome} title='ホーム' path='/' selected />
-            <NavItem icon={faTable} title='時間割' path='/' />
-            <NavItem icon={faChartLine} title='出席率' path='/' />
-            <NavItem icon={faBell} title='お知らせ' path='/' />
-            <NavItem icon={faCalendarAlt} title='カレンダー' path='/' />
-            <NavItem icon={faCog} title='設定' path='/' />
+            <NavItem icon={faTable} title='時間割' path='/timetable' />
+            <NavItem icon={faChartLine} title='出席率' path='/attendance' />
+            <NavItem icon={faBell} title='お知らせ' path='/news' />
+            <NavItem icon={faCalendarAlt} title='カレンダー' path='/calendar' />
+            <NavItem icon={faCog} title='設定' path='/settings' />
             {/* ログアウト */}
             <button
               className='w-full uppercase text-gray-500 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-accent hover:bg-gray-100'
