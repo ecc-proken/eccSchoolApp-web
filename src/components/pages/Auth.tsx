@@ -5,8 +5,8 @@ import AuthForm from 'components/organisms/AuthForm';
 
 const Auth: VFC = () => {
   return (
-    <div className='bg-white'>
-      <div className='flex justify-center h-screen'>
+    <div className='bg-white h-full'>
+      <div className='flex justify-center h-full'>
         <div className='hidden bg-cover lg:block lg:w-2/3'>
           <div
             className='flex items-center h-full px-20 bg-gray-100 bg-no-repeat'
@@ -18,7 +18,7 @@ const Auth: VFC = () => {
           >
             <div>
               <h2 className='text-4xl font-bold text-gray-700'>
-                ECCComp School APP
+                ECCcomp School App
               </h2>
 
               {/* ToDo: 画像にあったサイズに変更する */}
@@ -34,8 +34,9 @@ const Auth: VFC = () => {
         <div className='flex items-center w-full max-w-md px-6 mx-auto lg:w-2/6'>
           <div className='flex-1'>
             <div className='text-center'>
-              <h2 className='text-4xl font-bold text-center text-gray-700'>
-                ECCComp School APP
+              <h2 className='text-4xl space-y-2 font-bold text-center text-gray-700'>
+                <span className='inline-block'>ECCcomp</span>{' '}
+                <span className='inline-block'>School App</span>
               </h2>
 
               <p className='mt-3 text-gray-500'>
