@@ -1,11 +1,8 @@
 import { VFC } from 'react';
+import Layout from 'components/template/Layout';
 
 const Home: VFC = () => {
-  return (
-    <div>
-      <p>hoge</p>
-    </div>
-  );
+  return <Layout>hoge</Layout>;
 };
 
 export default Home;
