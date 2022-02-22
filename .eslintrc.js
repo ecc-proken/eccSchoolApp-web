@@ -44,6 +44,7 @@ module.exports = {
     ],
     'react/self-closing-comp': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
+    'react/button-has-type': 'off',
   },
   settings: {
     'import/resolver': {
