@@ -7,8 +7,9 @@ import {
   faCalendarAlt,
   faCog,
   faSignOut,
+  faHome,
 } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import NavItem from 'components/molecules/NavItem';
 
 type Props = {
   children: ReactNode;
@@ -62,49 +63,15 @@ const Layout: VFC<Props> = ({ pageTitle, children }) => {
             </svg>
           </div>
           <nav className='mt-6'>
-            {/* 時間割 */}
-            <Link
-              className='w-full uppercase text-blue-500 flex items-center p-4 my-2 transition-colors duration-200 justify-start bg-gradient-to-r from-white to-blue-100  border-r-4 border-blue-500'
-              to='/'
-            >
-              <FontAwesomeIcon icon={faTable} className='text-xl' />
-              <span className='mx-4 text-base font-normal'>時間割</span>
-            </Link>
-            {/* 出席率 */}
-            <Link
-              className='w-full uppercase text-gray-500 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500'
-              to='/'
-            >
-              <FontAwesomeIcon icon={faChartLine} className='text-xl' />
-              <span className='mx-4 text-base font-normal'>出席率</span>
-            </Link>
-            {/* お知らせ */}
-            <Link
-              className='w-full uppercase text-gray-500 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500'
-              to='/'
-            >
-              <FontAwesomeIcon icon={faBell} className='text-xl' />
-              <span className='mx-4 text-base font-normal'>お知らせ</span>
-            </Link>
-            {/* カレンダー */}
-            <Link
-              className='w-full uppercase text-gray-500 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500'
-              to='/'
-            >
-              <FontAwesomeIcon icon={faCalendarAlt} className='text-xl' />
-              <span className='mx-4 text-base font-normal'>カレンダー</span>
-            </Link>
-            {/* 設定 */}
-            <Link
-              className='w-full uppercase text-gray-500 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500'
-              to='/'
-            >
-              <FontAwesomeIcon icon={faCog} className='text-xl' />
-              <span className='mx-4 text-base font-normal'>設定</span>
-            </Link>
+            <NavItem icon={faHome} title='ホーム' path='/' selected />
+            <NavItem icon={faTable} title='時間割' path='/' />
+            <NavItem icon={faChartLine} title='出席率' path='/' />
+            <NavItem icon={faBell} title='お知らせ' path='/' />
+            <NavItem icon={faCalendarAlt} title='カレンダー' path='/' />
+            <NavItem icon={faCog} title='設定' path='/' />
             {/* ログアウト */}
             <button
-              className='w-full uppercase text-gray-500 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500'
+              className='w-full uppercase text-gray-500 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-blue-500 hover:bg-gray-100'
               type='button'
             >
               <FontAwesomeIcon icon={faSignOut} className='text-xl' />
