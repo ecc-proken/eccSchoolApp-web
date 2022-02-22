@@ -114,13 +114,11 @@ const Layout: VFC<Props> = ({ pageTitle, children }) => {
         </div>
       </div>
       {/* side end */}
-      <div className='w-full'>
-        <div className='px-6 py-10 mx-auto'>
-          <h1 className='text-3xl font-semibold text-center text-gray-800 uppercase lg:text-4xl'>
-            {pageTitle}
-          </h1>
-          {children}
-        </div>
+      <div className='w-full px-6 py-10'>
+        <h1 className='text-3xl font-semibold text-center text-gray-800 uppercase lg:text-4xl'>
+          {pageTitle}
+        </h1>
+        {children}
       </div>
     </div>
   );
