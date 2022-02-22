@@ -12,8 +12,9 @@ import { Link } from 'react-router-dom';
 
 type Props = {
   children: ReactNode;
+  pageTitle: string;
 };
-const Layout: VFC<Props> = ({ children }) => {
+const Layout: VFC<Props> = ({ pageTitle, children }) => {
   return (
     <div className='h-full flex'>
       {/* side start */}
@@ -113,7 +114,14 @@ const Layout: VFC<Props> = ({ children }) => {
         </div>
       </div>
       {/* side end */}
-      <div className='w-full'>{children}</div>
+      <div className='w-full'>
+        <div className='px-6 py-10 mx-auto'>
+          <h1 className='text-3xl font-semibold text-center text-gray-800 uppercase lg:text-4xl'>
+            {pageTitle}
+          </h1>
+          {children}
+        </div>
+      </div>
     </div>
   );
 };
