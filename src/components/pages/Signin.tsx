@@ -4,7 +4,7 @@ import heroImg from 'assets/auth_heroImage.svg';
 import AuthForm from 'components/organisms/AuthForm';
 import Title from 'components/template/Title';
 
-const Auth: VFC = () => {
+const Signin: VFC = () => {
   return (
     <div className='bg-white h-full'>
       <Title pageTitle='ログイン' />
@@ -56,4 +56,4 @@ const Auth: VFC = () => {
   );
 };
 
-export default Auth;
+export default Signin;
