@@ -4,22 +4,25 @@ import { faSignOut } from '@fortawesome/free-solid-svg-icons';
 import NavItem from 'components/molecules/NavItem';
 import Logo from 'assets/logo.svg';
 import tabDataList from 'data/tabDataList';
-import { useRecoilValue, useResetRecoilState } from 'recoil';
-import selectTabState from 'globalState/selectTabState';
+import { useResetRecoilState } from 'recoil';
 import userDataState from 'globalState/userDataState';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 type Props = {
   children: ReactNode;
   pageTitle: string;
 };
 const Layout: VFC<Props> = ({ pageTitle, children }) => {
-  const selectTabName = useRecoilValue(selectTabState);
-  const resetTabState = useResetRecoilState(selectTabState);
   const resetUserDataState = useResetRecoilState(userDataState);
   const navigation = useNavigate();
+  const { pathname } = useLocation();
+
+  /**
+   * localstrage の中身を削除して state を default に戻します。
+   * @date 2022-02-24
+   * @returns {void}
+   */
   const signout = () => {
-    resetTabState();
     resetUserDataState();
     localStorage.clear();
     navigation('/signin');
@@ -39,7 +42,7 @@ const Layout: VFC<Props> = ({ pageTitle, children }) => {
                 title={pageName}
                 key={pageName}
                 path={path}
-                selected={selectTabName === pageName}
+                selected={pathname === path}
               />
             ))}
             <button
