@@ -1,10 +1,11 @@
 import { atom } from 'recoil';
+import { UserData } from 'types/UserData';
 
-const userDataState = atom({
+const userDataState = atom<UserData>({
   key: 'userDataState',
   default: {
-    userId: '',
-    password: '',
+    userId: null,
+    password: null,
   },
 });
 export default userDataState;
