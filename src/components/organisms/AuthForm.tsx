@@ -3,12 +3,14 @@ import FormButton from 'components/molecules/FormButton';
 import FormInput from 'components/molecules/FormInput';
 import useUserDataState from 'hooks/useUserDataState';
 import { FormEventHandler, useState, VFC } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AuthForm: VFC = () => {
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const [authResult, setAuthResult] = useState<null | boolean>(null);
   const setUserDataHandler = useUserDataState();
+  const navigate = useNavigate();
   /**
    * input時に発火
    * stateを更新する
@@ -52,6 +54,7 @@ const AuthForm: VFC = () => {
 
     setAuthResult(true);
     setUserDataHandler(userId, password);
+    navigate('/');
   };
 
   return (
