@@ -38,6 +38,6 @@ const tabDataList = [
     pageName: '設定',
     icon: faCog,
   },
-];
+] as const;
 
 export default tabDataList;
