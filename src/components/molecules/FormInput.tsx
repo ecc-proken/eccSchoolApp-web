@@ -45,10 +45,10 @@ const FormInput: VFC<Props> = ({
       </label>
       <label
         htmlFor={id}
-        className='cursor-pointer absolute bottom-2.5 right-3'
+        className='cursor-pointer absolute -bottom-1 right-0'
         onClick={onClick}
       >
-        <FontAwesomeIcon icon={isShow ? faEyeSlash : faEye} />
+        <FontAwesomeIcon className='p-3' icon={isShow ? faEyeSlash : faEye} />
       </label>
       <input
         type={isShow ? 'text' : 'password'}
