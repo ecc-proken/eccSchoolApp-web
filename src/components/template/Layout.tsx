@@ -1,4 +1,4 @@
-import { ReactNode, VFC } from 'react';
+import { ReactNode, useEffect, VFC } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faTable,
@@ -11,12 +11,21 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import NavItem from 'components/molecules/NavItem';
 import Logo from 'assets/logo.svg';
+import { useRecoilValue } from 'recoil';
+import userDataState from 'globalState/userDataState';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
   children: ReactNode;
   pageTitle: string;
 };
 const Layout: VFC<Props> = ({ pageTitle, children }) => {
+  const { userId, password } = useRecoilValue(userDataState);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (userId === null || password === null) navigate('/auth');
+  }, []);
+
   return (
     <div className='h-full flex'>
       {/* side start */}
