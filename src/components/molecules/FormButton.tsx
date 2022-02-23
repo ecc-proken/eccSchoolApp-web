@@ -1,4 +1,4 @@
-import { ReactNode, VFC } from 'react';
+import { memo, ReactNode, VFC } from 'react';
 
 type Props = {
   type?: 'submit' | 'reset';
@@ -15,4 +15,4 @@ const FormButton: VFC<Props> = ({ type, children }) => {
   );
 };
 
-export default FormButton;
+export default memo(FormButton);
