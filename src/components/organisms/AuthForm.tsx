@@ -1,24 +1,38 @@
+import axios from 'axios';
 import FormButton from 'components/molecules/FormButton';
 import FormInput from 'components/molecules/FormInput';
-import { FormEventHandler, VFC } from 'react';
+import { FormEventHandler, useState, VFC } from 'react';
 
 const AuthForm: VFC = () => {
-  const [inputState, setInputState] = useState({
-    userId: '',
-    password: '',
-  });
+  const [userId, setUserId] = useState('');
+  const [password, setPassword] = useState('');
   const onInput: FormEventHandler<HTMLInputElement> = ({ currentTarget }) => {
-    const { name, value } = currentTarget;
-    setInputState({ name: value });
+    switch (currentTarget.name) {
+      case 'userId':
+        setUserId(currentTarget.value);
+        break;
+      case 'password':
+        setPassword(currentTarget.value);
+        break;
+      default:
+        console.error('key が正しくありません');
+        break;
+    }
   };
-  // const onClick = () => {
-  //   console.log('click!');
-  // };
-  // const submit = () => {
-  //   console.log('submit!');
-  // };
+  const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
+    const { data } = await axios.post(
+      `${process.env.REACT_APP_API_URL}/signin`,
+      {
+        userId,
+        password,
+      },
+    );
+    console.log(data);
+  };
+
   return (
-    <form className='space-y-6'>
+    <form className='space-y-6' onSubmit={onSubmit}>
       <FormInput
         id='userId'
         name='userId'
