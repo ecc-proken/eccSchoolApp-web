@@ -1,13 +1,14 @@
 import axios from 'axios';
 import FormButton from 'components/molecules/FormButton';
 import FormInput from 'components/molecules/FormInput';
+import useUserDataState from 'hooks/useUserDataState';
 import { FormEventHandler, useState, VFC } from 'react';
 
 const AuthForm: VFC = () => {
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const [authResult, setAuthResult] = useState<null | boolean>(null);
-
+  const setUserDataHandler = useUserDataState();
   /**
    * input時に発火
    * stateを更新する
@@ -46,10 +47,11 @@ const AuthForm: VFC = () => {
       userId,
       password,
     });
-    if (data.status === 401) setAuthResult(false);
-    else {
-      setAuthResult(true);
-    }
+    if (!data) return console.error('通信に失敗しました。');
+    if (data.status !== 200) return setAuthResult(false);
+
+    setAuthResult(true);
+    setUserDataHandler(userId, password);
   };
 
   return (
