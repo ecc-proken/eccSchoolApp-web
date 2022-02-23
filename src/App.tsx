@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useEffect, VFC } from 'react';
 import Home from './components/pages/Home';
 import Signin from './components/pages/Signin';
@@ -8,7 +8,6 @@ import userDataState from 'globalState/userDataState';
 const App: VFC = () => {
   const setUserData = useSetRecoilState(userDataState);
   const navigate = useNavigate();
-  const location = useLocation();
 
   /**
    * localStorage に格納されている userData を取得し null でない場合 atom に格納する。
@@ -23,7 +22,7 @@ const App: VFC = () => {
   };
   useEffect(() => {
     getUserDataHandler();
-  }, [location]);
+  }, []);
 
   return (
     <Routes>
