@@ -48,6 +48,7 @@ module.exports = {
     'import/order': 'off',
     'no-console': ['error', { allow: ['warn', 'error'] }],
     'consistent-return': 'off',
+    'no-useless-return': 'off',
   },
   settings: {
     'import/resolver': {
