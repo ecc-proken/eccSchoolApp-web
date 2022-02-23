@@ -1,22 +1,18 @@
 import { ReactNode, VFC } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faTable,
-  faChartLine,
-  faBell,
-  faCalendarAlt,
-  faCog,
-  faSignOut,
-  faHome,
-} from '@fortawesome/free-solid-svg-icons';
+import { faSignOut } from '@fortawesome/free-solid-svg-icons';
 import NavItem from 'components/molecules/NavItem';
 import Logo from 'assets/logo.svg';
+import tabDataList from 'data/tabDataList';
+import { useRecoilValue } from 'recoil';
+import selectTabState from 'globalState/selectTabState';
 
 type Props = {
   children: ReactNode;
   pageTitle: string;
 };
 const Layout: VFC<Props> = ({ pageTitle, children }) => {
+  const selectTabName = useRecoilValue(selectTabState);
   return (
     <div className='h-full flex'>
       {/* side start */}
@@ -26,12 +22,15 @@ const Layout: VFC<Props> = ({ pageTitle, children }) => {
             <img src={Logo} alt='logo' className='h-16' />
           </div>
           <nav className='mt-6'>
-            <NavItem icon={faHome} title='ホーム' path='/' selected />
-            <NavItem icon={faTable} title='時間割' path='/timetable' />
-            <NavItem icon={faChartLine} title='出席率' path='/attendance' />
-            <NavItem icon={faBell} title='お知らせ' path='/news' />
-            <NavItem icon={faCalendarAlt} title='カレンダー' path='/calendar' />
-            <NavItem icon={faCog} title='設定' path='/settings' />
+            {tabDataList.map(({ icon, pageName, path }) => (
+              <NavItem
+                icon={icon}
+                title={pageName}
+                key={pageName}
+                path={path}
+                selected={selectTabName === pageName}
+              />
+            ))}
             {/* ログアウト */}
             <button
               className='w-full uppercase text-gray-500 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-accent hover:bg-gray-100'
