@@ -7,6 +7,8 @@ import tabDataList from 'data/tabDataList';
 import { useResetRecoilState } from 'recoil';
 import userDataState from 'globalState/userDataState';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import pageMotion from 'animation/pageMotion';
 
 type Props = {
   children: ReactNode;
@@ -27,6 +29,7 @@ const Layout: VFC<Props> = ({ pageTitle, children }) => {
     localStorage.clear();
     navigation('/signin');
   };
+
   return (
     <div className='h-full flex'>
       {/* side start */}
@@ -57,12 +60,18 @@ const Layout: VFC<Props> = ({ pageTitle, children }) => {
         </div>
       </div>
       {/* side end */}
-      <div className='w-full px-6 py-10'>
+      <motion.div
+        initial='initial'
+        animate='animate'
+        exit='exit'
+        variants={pageMotion}
+        className='w-full px-6 py-10'
+      >
         <h1 className='text-3xl font-semibold text-center text-gray-800 uppercase lg:text-4xl'>
           {pageTitle}
         </h1>
         {children}
-      </div>
+      </motion.div>
     </div>
   );
 };

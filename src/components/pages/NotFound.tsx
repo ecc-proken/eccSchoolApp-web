@@ -1,10 +1,18 @@
+import pageMotion from 'animation/pageMotion';
 import Title from 'components/template/Title';
+import { motion } from 'framer-motion';
 import { VFC } from 'react';
 import { Link } from 'react-router-dom';
 
 const NotFound: VFC = () => {
   return (
-    <div className='flex items-center justify-center w-full h-full bg-accent'>
+    <motion.div
+      initial='initial'
+      animate='animate'
+      exit='exit'
+      variants={pageMotion}
+      className='flex items-center justify-center w-full h-full bg-accent'
+    >
       <Title pageTitle='404 Page not found' />
       <div className='w-full h-full md:w-fit md:h-fit md:px-40 md:py-20 bg-white rounded-md shadow-xl'>
         <div className='h-full flex flex-col items-center justify-center'>
@@ -34,7 +42,7 @@ const NotFound: VFC = () => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
