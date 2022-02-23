@@ -5,6 +5,7 @@ import Signin from './components/pages/Signin';
 import { useSetRecoilState } from 'recoil';
 import userDataState from 'globalState/userDataState';
 import NotFound from 'components/pages/NotFound';
+import Timetable from 'components/pages/Timetable';
 
 const App: VFC = () => {
   const setUserData = useSetRecoilState(userDataState);
@@ -29,6 +30,7 @@ const App: VFC = () => {
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/signin' element={<Signin />} />
+      <Route path='/timetable' element={<Timetable />} />
       <Route path='*' element={<NotFound />} />
     </Routes>
   );
