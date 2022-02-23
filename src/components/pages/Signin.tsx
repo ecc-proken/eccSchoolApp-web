@@ -1,10 +1,41 @@
-import { VFC } from 'react';
+import { useEffect, VFC } from 'react';
 // ToDo: imgを変更する
 import heroImg from 'assets/auth_heroImage.svg';
 import AuthForm from 'components/organisms/AuthForm';
 import Title from 'components/template/Title';
+import { useSetRecoilState } from 'recoil';
+import userDataState from 'globalState/userDataState';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Signin: VFC = () => {
+  const setUserData = useSetRecoilState(userDataState);
+  const navigate = useNavigate();
+
+  /**
+   * localStorage にデータがあれば、ログイン出来るかを確認し出来た場合は ホーム画面 に遷移する
+   * @date 2022-02-23
+   * @returns {void}
+   */
+  useEffect(() => {
+    const userId = localStorage.getItem('userId');
+    const password = localStorage.getItem('password');
+    if (userId === null || password === null) return localStorage.clear();
+    axios
+      .post<{
+        message: 'success' | 'error';
+        status: 200 | 401;
+      }>(`${process.env.REACT_APP_API_URL}/signin`, {
+        userId,
+        password,
+      })
+      .then(({ data }) => {
+        if (data.status === 401) return localStorage.clear();
+        setUserData({ userId, password });
+        navigate('/');
+      });
+  }, []);
+
   return (
     <div className='bg-white h-full'>
       <Title pageTitle='ログイン' />
