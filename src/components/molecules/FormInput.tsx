@@ -43,13 +43,6 @@ const FormInput: VFC<Props> = ({
       <label htmlFor={id} className='block mb-2 text-sm text-gray-600'>
         {children}
       </label>
-      <label
-        htmlFor={id}
-        className='cursor-pointer absolute -bottom-1 right-0'
-        onClick={onClick}
-      >
-        <FontAwesomeIcon className='p-3' icon={isShow ? faEyeSlash : faEye} />
-      </label>
       <input
         type={isShow ? 'text' : 'password'}
         name={name}
@@ -59,6 +52,14 @@ const FormInput: VFC<Props> = ({
         onInput={onInput}
         required
       />
+      <label htmlFor={id} className='cursor-pointer absolute bottom-0 right-0'>
+        <button type='button' onClick={onClick}>
+          <FontAwesomeIcon
+            className='p-2.5'
+            icon={isShow ? faEyeSlash : faEye}
+          />
+        </button>
+      </label>
     </div>
   );
 };
