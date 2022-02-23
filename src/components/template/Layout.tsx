@@ -4,8 +4,10 @@ import { faSignOut } from '@fortawesome/free-solid-svg-icons';
 import NavItem from 'components/molecules/NavItem';
 import Logo from 'assets/logo.svg';
 import tabDataList from 'data/tabDataList';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useResetRecoilState } from 'recoil';
 import selectTabState from 'globalState/selectTabState';
+import userDataState from 'globalState/userDataState';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
   children: ReactNode;
@@ -13,6 +15,15 @@ type Props = {
 };
 const Layout: VFC<Props> = ({ pageTitle, children }) => {
   const selectTabName = useRecoilValue(selectTabState);
+  const resetTabState = useResetRecoilState(selectTabState);
+  const resetUserDataState = useResetRecoilState(userDataState);
+  const navigation = useNavigate();
+  const signout = () => {
+    resetTabState();
+    resetUserDataState();
+    localStorage.clear();
+    navigation('/signin');
+  };
   return (
     <div className='h-full flex'>
       {/* side start */}
@@ -31,10 +42,10 @@ const Layout: VFC<Props> = ({ pageTitle, children }) => {
                 selected={selectTabName === pageName}
               />
             ))}
-            {/* ログアウト */}
             <button
               className='w-full uppercase text-gray-500 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-accent hover:bg-gray-100'
               type='button'
+              onClick={signout}
             >
               <FontAwesomeIcon icon={faSignOut} className='text-xl' />
               <span className='mx-4 text-base font-normal'>ログアウト</span>
