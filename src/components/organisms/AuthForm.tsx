@@ -2,10 +2,19 @@ import axios from 'axios';
 import FormButton from 'components/molecules/FormButton';
 import FormInput from 'components/molecules/FormInput';
 import useUserDataState from 'hooks/useUserDataState';
-import { FormEventHandler, useState, VFC } from 'react';
+import {
+  Dispatch,
+  FormEventHandler,
+  SetStateAction,
+  useState,
+  VFC,
+} from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const AuthForm: VFC = () => {
+type Props = {
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
+};
+const AuthForm: VFC<Props> = ({ setIsLoading }) => {
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const [authResult, setAuthResult] = useState<null | boolean>(null);
@@ -42,6 +51,7 @@ const AuthForm: VFC = () => {
    */
   const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const { data } = await axios.post<{
       message: 'success' | 'error';
       status: 200 | 401;
@@ -49,6 +59,7 @@ const AuthForm: VFC = () => {
       userId,
       password,
     });
+    setIsLoading(false);
     if (!data) return console.error('通信に失敗しました。');
     if (data.status !== 200) return setAuthResult(false);
 

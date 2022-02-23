@@ -1,4 +1,4 @@
-import { useEffect, VFC } from 'react';
+import { useEffect, useState, VFC } from 'react';
 // ToDo: imgを変更する
 import heroImg from 'assets/auth_heroImage.svg';
 import AuthForm from 'components/organisms/AuthForm';
@@ -6,11 +6,13 @@ import Title from 'components/template/Title';
 import { useSetRecoilState } from 'recoil';
 import userDataState from 'globalState/userDataState';
 import axios from 'axios';
+import LoadingSpiner from 'components/atoms/LoadingSpiner';
 import { useNavigate } from 'react-router-dom';
 
 const Signin: VFC = () => {
   const setUserData = useSetRecoilState(userDataState);
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   /**
    * localStorage にデータがあれば、ログイン出来るかを確認し出来た場合は ホーム画面 に遷移する
@@ -21,6 +23,7 @@ const Signin: VFC = () => {
     const userId = localStorage.getItem('userId');
     const password = localStorage.getItem('password');
     if (userId === null || password === null) return localStorage.clear();
+    setIsLoading(true);
     axios
       .post<{
         message: 'success' | 'error';
@@ -30,6 +33,7 @@ const Signin: VFC = () => {
         password,
       })
       .then(({ data }) => {
+        setIsLoading(false);
         if (data.status === 401) return localStorage.clear();
         setUserData({ userId, password });
         navigate('/');
@@ -37,8 +41,9 @@ const Signin: VFC = () => {
   }, []);
 
   return (
-    <div className='bg-white h-full'>
+    <div className='bg-white h-full relative'>
       <Title pageTitle='ログイン' />
+      {isLoading && <LoadingSpiner />}
       <div className='flex justify-center h-full'>
         <div className='hidden bg-cover lg:block lg:w-2/3'>
           <div
@@ -78,7 +83,7 @@ const Signin: VFC = () => {
             </div>
 
             <div className='mt-8'>
-              <AuthForm />
+              <AuthForm setIsLoading={setIsLoading} />
             </div>
           </div>
         </div>
