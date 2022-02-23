@@ -8,10 +8,12 @@ import {
   faCog,
 } from '@fortawesome/free-solid-svg-icons';
 import HomeItem from 'components/organisms/HomeItem';
+import Title from 'components/template/Title';
 
 const Home: VFC = () => {
   return (
     <Layout pageTitle='Home'>
+      <Title pageTitle='ホーム画面' />
       <div className='grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-8 md:grid-cols-2 xl:grid-cols-3'>
         <HomeItem title='時間割' path='/timetable' icon={faTable}>
           今週の時間割を確認することが出来ます。

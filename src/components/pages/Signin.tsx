@@ -2,10 +2,12 @@ import { VFC } from 'react';
 // ToDo: imgを変更する
 import heroImg from 'assets/auth_heroImage.svg';
 import AuthForm from 'components/organisms/AuthForm';
+import Title from 'components/template/Title';
 
 const Auth: VFC = () => {
   return (
     <div className='bg-white h-full'>
+      <Title pageTitle='ログイン' />
       <div className='flex justify-center h-full'>
         <div className='hidden bg-cover lg:block lg:w-2/3'>
           <div
