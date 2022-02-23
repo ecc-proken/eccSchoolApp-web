@@ -46,6 +46,7 @@ module.exports = {
     'jsx-a11y/label-has-associated-control': 'off',
     'react/button-has-type': 'off',
     'import/order': 'off',
+    'no-console': ['error', { allow: ['warn', 'error'] }],
   },
   settings: {
     'import/resolver': {
