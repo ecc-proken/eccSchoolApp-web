@@ -1,28 +1,34 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, VFC } from 'react';
 import Home from './components/pages/Home';
-import Auth from './components/pages/Auth';
+import Signin from './components/pages/Signin';
 import { useSetRecoilState } from 'recoil';
 import userDataState from 'globalState/userDataState';
 
 const App: VFC = () => {
   const setUserData = useSetRecoilState(userDataState);
+  const navigate = useNavigate();
+  const location = useLocation();
+
   /**
-   * localStorage に格納されている userData を取得し atom に格納している。
+   * localStorage に格納されている userData を取得し null でない場合 atom に格納する。
    * @date 2022-02-23
    * @returns {void}
    */
   const getUserDataHandler = () => {
     const userId = localStorage.getItem('userId');
     const password = localStorage.getItem('password');
+    if (userId === null || password === null) navigate('/signin');
     setUserData({ userId, password });
   };
-  useEffect(() => getUserDataHandler(), []);
+  useEffect(() => {
+    getUserDataHandler();
+  }, [location]);
 
   return (
     <Routes>
       <Route path='/' element={<Home />} />
-      <Route path='/auth' element={<Auth />} />
+      <Route path='/signin' element={<Signin />} />
     </Routes>
   );
 };
