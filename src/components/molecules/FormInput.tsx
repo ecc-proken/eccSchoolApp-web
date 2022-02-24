@@ -40,9 +40,20 @@ const FormInput: VFC<Props> = ({
   const onClick = () => setIsShow(!isShow);
   return (
     <div className='relative'>
-      <label htmlFor={id} className='block mb-2 text-sm text-gray-600'>
-        {children}
-      </label>
+      <div className='flex justify-between mb-2'>
+        <label htmlFor={id} className='block mb-2 text-sm text-gray-600'>
+          {children}
+        </label>
+        <a
+          href='https://falcon.ecc.ac.jp/eccmo'
+          target='_blank'
+          className='text-sm text-gray-400 focus:text-accent hover:text-accent hover:underline'
+          rel='noreferrer'
+          tabIndex={-1}
+        >
+          Forgot password?
+        </a>
+      </div>
       <input
         type={isShow ? 'text' : 'password'}
         name={name}
