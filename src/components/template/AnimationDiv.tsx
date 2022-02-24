@@ -1,4 +1,4 @@
-import { ReactNode, VFC } from 'react';
+import { memo, ReactNode, VFC } from 'react';
 import { motion } from 'framer-motion';
 
 type Props = {
@@ -30,4 +30,4 @@ const AnimationDiv: VFC<Props> = ({ className, children }) => {
   );
 };
 
-export default AnimationDiv;
+export default memo(AnimationDiv);

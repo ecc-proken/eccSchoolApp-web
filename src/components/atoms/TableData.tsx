@@ -1,4 +1,4 @@
-import { ReactNode, VFC } from 'react';
+import { memo, ReactNode, VFC } from 'react';
 
 type Props = {
   children: ReactNode;
@@ -11,4 +11,4 @@ const TableData: VFC<Props> = ({ children }) => {
   );
 };
 
-export default TableData;
+export default memo(TableData);

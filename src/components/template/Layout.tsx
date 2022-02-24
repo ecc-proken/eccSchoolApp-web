@@ -1,4 +1,4 @@
-import { ReactNode, VFC } from 'react';
+import { memo, ReactNode, VFC } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOut } from '@fortawesome/free-solid-svg-icons';
 import NavItem from 'components/molecules/NavItem';
@@ -71,4 +71,4 @@ const Layout: VFC<Props> = ({ pageTitle, children }) => {
   );
 };
 
-export default Layout;
+export default memo(Layout);

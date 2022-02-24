@@ -1,4 +1,4 @@
-import { VFC } from 'react';
+import { memo, VFC } from 'react';
 import { Helmet } from 'react-helmet';
 
 type Props = {
@@ -12,4 +12,4 @@ const Title: VFC<Props> = ({ pageTitle }) => {
   );
 };
 
-export default Title;
+export default memo(Title);

@@ -8,6 +8,7 @@ import {
   SetStateAction,
   useState,
   VFC,
+  useCallback,
 } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -27,19 +28,22 @@ const AuthForm: VFC<Props> = ({ setIsLoading }) => {
    * @param {FormEventHandler} { currentTarget }
    * @returns {void}
    */
-  const onInput: FormEventHandler<HTMLInputElement> = ({ currentTarget }) => {
-    switch (currentTarget.name) {
-      case 'userId':
-        setUserId(currentTarget.value);
-        break;
-      case 'password':
-        setPassword(currentTarget.value);
-        break;
-      default:
-        console.error('key が正しくありません');
-        break;
-    }
-  };
+  const onInput: FormEventHandler<HTMLInputElement> = useCallback(
+    ({ currentTarget }) => {
+      switch (currentTarget.name) {
+        case 'userId':
+          setUserId(currentTarget.value);
+          break;
+        case 'password':
+          setPassword(currentTarget.value);
+          break;
+        default:
+          console.error('key が正しくありません');
+          break;
+      }
+    },
+    [setUserId, setPassword],
+  );
 
   /**
    * submit時に発火
