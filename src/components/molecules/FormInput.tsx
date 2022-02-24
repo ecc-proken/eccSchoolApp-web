@@ -32,6 +32,7 @@ const FormInput: VFC<Props> = ({
           className='block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:ring-accent focus:outline-none focus:ring focus:ring-opacity-40'
           onInput={onInput}
           required
+          tabIndex={1}
         />
       </div>
     );
@@ -49,7 +50,6 @@ const FormInput: VFC<Props> = ({
           target='_blank'
           className='text-sm text-gray-400 focus:text-accent hover:text-accent hover:underline'
           rel='noreferrer'
-          tabIndex={-1}
         >
           Forgot password?
         </a>
@@ -62,9 +62,10 @@ const FormInput: VFC<Props> = ({
         className='block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:ring-accent focus:outline-none focus:ring focus:ring-opacity-40'
         onInput={onInput}
         required
+        tabIndex={1}
       />
       <label htmlFor={id} className='cursor-pointer absolute bottom-0 right-0'>
-        <button type='button' onClick={onClick}>
+        <button type='button' onClick={onClick} tabIndex={1}>
           <FontAwesomeIcon
             className='p-2.5'
             icon={isShow ? faEyeSlash : faEye}
