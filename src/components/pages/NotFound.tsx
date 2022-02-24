@@ -7,7 +7,7 @@ const NotFound: VFC = () => {
   return (
     <AnimationDiv className='flex items-center justify-center w-full h-full bg-accent'>
       <Title pageTitle='404 Page not found' />
-      <div className='w-full h-full md:w-fit md:h-fit md:px-40 md:py-20 bg-white rounded-md shadow-xl'>
+      <div className='w-full h-full bg-white rounded-md md:w-fit md:h-fit md:px-40 md:py-20 md:shadow-xl'>
         <div className='h-full flex flex-col items-center justify-center'>
           <h1 className='font-bold text-accent text-9xl'>404</h1>
           <h6 className='mb-2 text-2xl font-bold text-center text-gray-700 md:text-3xl'>
