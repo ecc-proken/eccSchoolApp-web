@@ -8,8 +8,7 @@ import userDataState from 'globalState/userDataState';
 import axios from 'axios';
 import LoadingSpiner from 'components/atoms/LoadingSpiner';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import pageMotion from 'animation/pageMotion';
+import AnimationDiv from 'components/template/AnimationDiv';
 
 const Signin: VFC = () => {
   const setUserData = useSetRecoilState(userDataState);
@@ -43,13 +42,7 @@ const Signin: VFC = () => {
   }, []);
 
   return (
-    <motion.div
-      initial='initial'
-      animate='animate'
-      exit='exit'
-      variants={pageMotion}
-      className='bg-white h-full relative'
-    >
+    <AnimationDiv className='bg-white h-full relative'>
       <Title pageTitle='ログイン' />
       {isLoading && <LoadingSpiner />}
       <div className='flex justify-center h-full'>
@@ -96,7 +89,7 @@ const Signin: VFC = () => {
           </div>
         </div>
       </div>
-    </motion.div>
+    </AnimationDiv>
   );
 };
 
