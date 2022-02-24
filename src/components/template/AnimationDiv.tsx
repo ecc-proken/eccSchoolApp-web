@@ -7,18 +7,19 @@ type Props = {
 };
 const AnimationDiv: VFC<Props> = ({ className, children }) => {
   const pageMotion = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: 0.2 } },
-    exit: { opacity: 0, transition: { duration: 0.1 } },
+    hidden: { opacity: 0, x: -200, y: 0 },
+    enter: { opacity: 1, x: 0, y: 0 },
+    exit: { opacity: 0, x: 0, y: -100 },
   };
 
   // ToDo: Animation を変更する
   return (
     <motion.div
-      initial='initial'
-      animate='animate'
+      initial='hidden'
+      animate='enter'
       exit='exit'
       variants={pageMotion}
+      transition={{ type: 'linear' }}
       className={className}
     >
       {children}
