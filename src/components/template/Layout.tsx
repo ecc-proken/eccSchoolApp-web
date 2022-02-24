@@ -30,9 +30,9 @@ const Layout: VFC<Props> = ({ pageTitle, children }) => {
   };
 
   return (
-    <div className='h-full flex'>
+    <div className='min-h-full flex'>
       {/* side start */}
-      <div className='h-full hidden lg:block my-4 shadow-lg relative w-80'>
+      <div className='min-h-fit hidden lg:block shadow-lg relative w-80'>
         <div className='bg-white h-full rounded-2xl'>
           <div className='flex items-center justify-center pt-6'>
             <img src={Logo} alt='logo' className='h-16' />
@@ -59,7 +59,7 @@ const Layout: VFC<Props> = ({ pageTitle, children }) => {
         </div>
       </div>
       {/* side end */}
-      <div className='w-full overflow-x-hidden'>
+      <div className='min-h-full w-full overflow-scroll'>
         <AnimationDiv className='w-full px-2 py-4 md:px-6 md:py-10'>
           <h1 className='text-3xl font-semibold text-center text-gray-800 uppercase lg:text-4xl'>
             {pageTitle}
