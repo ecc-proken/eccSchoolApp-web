@@ -49,6 +49,7 @@ module.exports = {
     'no-console': ['error', { allow: ['warn', 'error'] }],
     'consistent-return': 'off',
     'no-useless-return': 'off',
+    'jsx-a11y/tabindex-no-positive': 'off',
   },
   settings: {
     'import/resolver': {
