@@ -59,12 +59,14 @@ const Layout: VFC<Props> = ({ pageTitle, children }) => {
         </div>
       </div>
       {/* side end */}
-      <AnimationDiv className='w-full px-6 py-10'>
-        <h1 className='text-3xl font-semibold text-center text-gray-800 uppercase lg:text-4xl'>
-          {pageTitle}
-        </h1>
-        {children}
-      </AnimationDiv>
+      <div className='w-full overflow-x-hidden'>
+        <AnimationDiv className='w-full px-6 py-10'>
+          <h1 className='text-3xl font-semibold text-center text-gray-800 uppercase lg:text-4xl'>
+            {pageTitle}
+          </h1>
+          {children}
+        </AnimationDiv>
+      </div>
     </div>
   );
 };
