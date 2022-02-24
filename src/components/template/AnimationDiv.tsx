@@ -6,6 +6,9 @@ type Props = {
   children: ReactNode;
 };
 const AnimationDiv: VFC<Props> = ({ className, children }) => {
+  if (window.matchMedia('(max-width: 1023px)').matches)
+    return <div className={`h-full ${className}`}>{children}</div>;
+
   const pageMotion = {
     hidden: { opacity: 0, x: -200, y: 0 },
     enter: { opacity: 1, x: 0, y: 0 },
