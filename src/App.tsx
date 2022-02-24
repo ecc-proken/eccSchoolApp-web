@@ -7,6 +7,7 @@ import userDataState from 'globalState/userDataState';
 import NotFound from 'components/pages/NotFound';
 import Timetable from 'components/pages/Timetable';
 import { AnimatePresence } from 'framer-motion';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 const App: VFC = () => {
   const setUserData = useSetRecoilState(userDataState);
@@ -28,15 +29,18 @@ const App: VFC = () => {
     getUserDataHandler();
   }, []);
 
+  const queryClient = new QueryClient();
   return (
-    <AnimatePresence exitBeforeEnter>
-      <Routes location={location} key={location.pathname}>
-        <Route path='/' element={<Home />} />
-        <Route path='/signin' element={<Signin />} />
-        <Route path='/timetable' element={<Timetable />} />
-        <Route path='*' element={<NotFound />} />
-      </Routes>
-    </AnimatePresence>
+    <QueryClientProvider client={queryClient}>
+      <AnimatePresence exitBeforeEnter>
+        <Routes location={location} key={location.pathname}>
+          <Route path='/' element={<Home />} />
+          <Route path='/signin' element={<Signin />} />
+          <Route path='/timetable' element={<Timetable />} />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+      </AnimatePresence>
+    </QueryClientProvider>
   );
 };
 
