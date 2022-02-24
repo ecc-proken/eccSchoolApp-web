@@ -20,7 +20,7 @@ const AnimationDiv: VFC<Props> = ({ className, children }) => {
       exit='exit'
       variants={pageMotion}
       transition={{ type: 'linear' }}
-      className={className}
+      className={`h-full ${className}`}
     >
       {children}
     </motion.div>
