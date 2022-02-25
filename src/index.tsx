@@ -4,11 +4,19 @@ import App from './App';
 import './index.css';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
-import { RecoilRoot } from 'recoil';
+import { MutableSnapshot, RecoilRoot } from 'recoil';
+import userDataState from 'globalState/userDataState';
+
+const initializeState = (mutableSnapshot: MutableSnapshot) => {
+  const userId = localStorage.getItem('userId');
+  const password = localStorage.getItem('password');
+  if (userId !== null || password !== null)
+    mutableSnapshot.set(userDataState, { userId, password });
+};
 
 ReactDOM.render(
   <BrowserRouter>
-    <RecoilRoot>
+    <RecoilRoot initializeState={initializeState}>
       <App />
     </RecoilRoot>
   </BrowserRouter>,

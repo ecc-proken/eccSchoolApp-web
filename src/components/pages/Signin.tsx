@@ -3,7 +3,7 @@ import { useEffect, useState, VFC } from 'react';
 import heroImg from 'assets/auth_heroImage.svg';
 import AuthForm from 'components/organisms/AuthForm';
 import Title from 'components/template/Title';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState, useResetRecoilState } from 'recoil';
 import userDataState from 'globalState/userDataState';
 import axios from 'axios';
 import LoadingSpiner from 'components/atoms/LoadingSpiner';
@@ -11,32 +11,28 @@ import { useNavigate } from 'react-router-dom';
 import AnimationDiv from 'components/template/AnimationDiv';
 
 const Signin: VFC = () => {
-  const setUserData = useSetRecoilState(userDataState);
+  const [userData, setUserData] = useRecoilState(userDataState);
+  const userDataReset = useResetRecoilState(userDataState);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
   /**
-   * localStorage にデータがあれば、ログイン出来るかを確認し出来た場合は ホーム画面 に遷移する
+   * atom にデータがあれば、ログイン出来るかを確認し出来た場合は ホーム画面 に遷移する
    * @date 2022-02-23
    * @returns {void}
    */
   useEffect(() => {
-    const userId = localStorage.getItem('userId');
-    const password = localStorage.getItem('password');
-    if (userId === null || password === null) return localStorage.clear();
+    if (userData.userId === null || userData.password === null) return;
     setIsLoading(true);
     axios
       .post<{
         message: 'success' | 'error';
         status: 200 | 401;
-      }>(`${process.env.REACT_APP_API_URL}/signin`, {
-        userId,
-        password,
-      })
+      }>(`${process.env.REACT_APP_API_URL}/signin`, userData)
       .then(({ data }) => {
         setIsLoading(false);
-        if (data.status === 401) return localStorage.clear();
-        setUserData({ userId, password });
+        if (data.status === 401) return userDataReset();
+        setUserData(userData);
         navigate('/');
       });
   }, []);

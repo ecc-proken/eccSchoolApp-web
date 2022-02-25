@@ -2,7 +2,7 @@ import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, VFC } from 'react';
 import Home from './components/pages/Home';
 import Signin from './components/pages/Signin';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import userDataState from 'globalState/userDataState';
 import NotFound from 'components/pages/NotFound';
 import Timetable from 'components/pages/Timetable';
@@ -10,23 +10,18 @@ import { AnimatePresence } from 'framer-motion';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 const App: VFC = () => {
-  const setUserData = useSetRecoilState(userDataState);
+  const userData = useRecoilValue(userDataState);
   const navigate = useNavigate();
   const location = useLocation();
 
   /**
-   * localStorage に格納されている userData を取得し null でない場合 atom に格納する。
+   * userData を取得し null の場合は signin に遷移する
    * @date 2022-02-23
    * @returns {void}
    */
-  const getUserDataHandler = () => {
-    const userId = localStorage.getItem('userId');
-    const password = localStorage.getItem('password');
-    if (userId === null || password === null) navigate('/signin');
-    setUserData({ userId, password });
-  };
   useEffect(() => {
-    getUserDataHandler();
+    if (userData.userId === null || userData.password === null)
+      navigate('/signin');
   }, []);
 
   const queryClient = new QueryClient();
