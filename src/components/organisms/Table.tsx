@@ -1,7 +1,36 @@
+import LoadingSpiner from 'components/atoms/LoadingSpiner';
 import TableData from 'components/atoms/TableData';
+import useTimetable from 'hooks/useGetTimetable';
 import { VFC } from 'react';
+import Timetable from 'types/timetable';
 
 const Table: VFC = () => {
+  const { data, isSuccess, isLoading } = useTimetable();
+  if (isLoading === true) return <LoadingSpiner />;
+  if (isSuccess === false)
+    return <p className='text-center'>データの取得に失敗しました。</p>;
+
+  /**
+   * データとコマ目を受け取り、平日のみTableDataコンポーネントを返す
+   * @date 2022-02-26
+   * @param {Timetable} tableData
+   * @param {number} periodNumber
+   * @returns {void | TableData}
+   */
+  const tableDataTagCreate = (
+    { timetable, weekday }: Timetable,
+    periodNumber: number,
+  ) => {
+    if (weekday === '土' || weekday === '日') return;
+    if (timetable[periodNumber])
+      return (
+        <TableData key={weekday}>
+          {timetable[periodNumber].replaceAll('\u{a0}', '')}
+        </TableData>
+      );
+    return <TableData key={weekday} />;
+  };
+
   return (
     <table className='min-w-full text-center mt-8 h-[94%]'>
       <thead className='border bg-accent'>
@@ -32,50 +61,35 @@ const Table: VFC = () => {
             1<br />
             <span className='text-gray-400'>09:15 ~ 10:45</span>
           </td>
-
-          {[...Array(5)].map(() => (
-            <TableData>1コマ</TableData>
-          ))}
+          {data?.map((timetable) => tableDataTagCreate(timetable, 1))}
         </tr>
         <tr className='bg-white border-b'>
           <td className='py-4 border-x text-xs md:text-sm text-gray-700'>
             2<br />
             <span className='text-gray-400'>11:00 ~ 12:30</span>
           </td>
-
-          {[...Array(5)].map(() => (
-            <TableData>1コマ</TableData>
-          ))}
+          {data?.map((timetable) => tableDataTagCreate(timetable, 2))}
         </tr>
         <tr className='bg-white border-b'>
           <td className='py-4 border-x text-xs md:text-sm text-gray-700'>
             3<br />
             <span className='text-gray-400'>13:30 ~ 15:00</span>
           </td>
-
-          {[...Array(5)].map(() => (
-            <TableData>1コマ</TableData>
-          ))}
+          {data?.map((timetable) => tableDataTagCreate(timetable, 3))}
         </tr>
         <tr className='bg-white border-b'>
           <td className='py-4 border-x text-xs md:text-sm text-gray-700'>
             4<br />
             <span className='text-gray-400'>15:15 ~ 16:45</span>
           </td>
-
-          {[...Array(5)].map(() => (
-            <TableData>1コマ</TableData>
-          ))}
+          {data?.map((timetable) => tableDataTagCreate(timetable, 4))}
         </tr>
         <tr className='bg-white border-b'>
           <td className='py-4 border-x text-xs md:text-sm text-gray-700'>
             5<br />
             <span className='text-gray-400'>17:00 ~ 18:30</span>
           </td>
-
-          {[...Array(5)].map(() => (
-            <TableData>1コマ</TableData>
-          ))}
+          {data?.map((timetable) => tableDataTagCreate(timetable, 5))}
         </tr>
       </tbody>
     </table>

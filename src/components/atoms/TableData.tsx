@@ -1,7 +1,7 @@
 import { memo, ReactNode, VFC } from 'react';
 
 type Props = {
-  children: ReactNode;
+  children?: ReactNode;
 };
 const TableData: VFC<Props> = ({ children }) => {
   return (
