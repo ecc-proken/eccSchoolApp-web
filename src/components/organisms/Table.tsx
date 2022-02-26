@@ -23,11 +23,7 @@ const Table: VFC = () => {
   ) => {
     if (weekday === '土' || weekday === '日') return;
     if (timetable[periodNumber])
-      return (
-        <TableData key={weekday}>
-          {timetable[periodNumber].replaceAll('\u{a0}', '')}
-        </TableData>
-      );
+      return <TableData key={weekday}>{timetable[periodNumber]}</TableData>;
     return <TableData key={weekday} />;
   };
 
