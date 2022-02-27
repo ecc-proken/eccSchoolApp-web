@@ -8,6 +8,7 @@ import NotFound from 'components/pages/NotFound';
 import Timetable from 'components/pages/Timetable';
 import { AnimatePresence } from 'framer-motion';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 const App: VFC = () => {
   const userData = useRecoilValue(userDataState);
@@ -24,7 +25,15 @@ const App: VFC = () => {
       navigate('/signin');
   }, []);
 
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+        staleTime: Infinity,
+        cacheTime: Infinity,
+      },
+    },
+  });
   return (
     <QueryClientProvider client={queryClient}>
       <AnimatePresence exitBeforeEnter>
@@ -35,6 +44,7 @@ const App: VFC = () => {
           <Route path='*' element={<NotFound />} />
         </Routes>
       </AnimatePresence>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 };
