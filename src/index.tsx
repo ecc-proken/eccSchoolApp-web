@@ -15,11 +15,11 @@ const initializeState = (mutableSnapshot: MutableSnapshot) => {
 };
 
 ReactDOM.render(
-  <BrowserRouter>
-    <RecoilRoot initializeState={initializeState}>
+  <RecoilRoot initializeState={initializeState}>
+    <BrowserRouter>
       <App />
-    </RecoilRoot>
-  </BrowserRouter>,
+    </BrowserRouter>
+  </RecoilRoot>,
   document.getElementById('root'),
 );
 

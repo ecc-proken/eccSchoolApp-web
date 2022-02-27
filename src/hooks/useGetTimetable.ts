@@ -13,9 +13,15 @@ const getTimetable = async (userData: UserData) => {
   return data;
 };
 
-const useTimetable = () => {
+const useGetTimetable = () => {
   const userData = useRecoilValue(userDataState);
-  return useQuery(['timetable', userData], () => getTimetable(userData));
+  const queryFn = () => getTimetable(userData);
+  return useQuery<Timetable[]>({
+    queryKey: 'timetable',
+    queryFn,
+    cacheTime: 30000,
+    staleTime: 30000,
+  });
 };
 
-export default useTimetable;
+export default useGetTimetable;

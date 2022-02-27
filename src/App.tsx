@@ -10,6 +10,15 @@ import { AnimatePresence } from 'framer-motion';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: false,
+    },
+  },
+});
+
 const App: VFC = () => {
   const userData = useRecoilValue(userDataState);
   const navigate = useNavigate();
@@ -25,15 +34,6 @@ const App: VFC = () => {
       navigate('/signin');
   }, []);
 
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        refetchOnWindowFocus: false,
-        staleTime: Infinity,
-        cacheTime: Infinity,
-      },
-    },
-  });
   return (
     <QueryClientProvider client={queryClient}>
       <AnimatePresence exitBeforeEnter>
