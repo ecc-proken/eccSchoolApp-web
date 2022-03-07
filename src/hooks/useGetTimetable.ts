@@ -7,7 +7,7 @@ import Timetable from 'types/timetable';
 
 const getTimetable = async (userData: UserData) => {
   const { data } = await axios.post<Timetable[]>(
-    'http://localhost:8000/api/timetable',
+    `${process.env.REACT_APP_API_URL}/timetable`,
     userData,
   );
   return data;
