@@ -6,9 +6,10 @@ import { useRecoilValue } from 'recoil';
 import userDataState from 'globalState/userDataState';
 import NotFound from 'components/pages/NotFound';
 import Timetable from 'components/pages/Timetable';
+import Attendance from 'components/pages/Attendance';
 import { AnimatePresence } from 'framer-motion';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
+// import { ReactQueryDevtools } from 'react-query/devtools';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -41,10 +42,11 @@ const App: VFC = () => {
           <Route path='/' element={<Home />} />
           <Route path='/signin' element={<Signin />} />
           <Route path='/timetable' element={<Timetable />} />
+          <Route path='/attendance' element={<Attendance />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </AnimatePresence>
-      <ReactQueryDevtools initialIsOpen={false} />
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </QueryClientProvider>
   );
 };
