@@ -1,6 +1,6 @@
 import LoadingSpiner from 'components/atoms/LoadingSpiner';
 import useGetAttendance from 'hooks/useGetAttendance';
-import { useEffect, useRef, useState, VFC } from 'react';
+import { useRef, VFC } from 'react';
 import { useQueryClient } from 'react-query';
 import Attendance from 'types/attendance';
 import Highcharts from 'highcharts';
@@ -25,12 +25,12 @@ const options = (
 ) => ({
   chart: {
     type: 'solidgauge',
-    height: '110%',
+    height: '450px',
   },
   title: {
-    text: 'Attendance',
+    text: '',
     style: {
-      fontSize: '24px',
+      fontSize: '1rem',
     },
   },
   tooltip: {
@@ -38,11 +38,11 @@ const options = (
     backgroundColor: 'none',
     shadow: false,
     style: {
-      fontSize: '16px',
+      fontSize: '0.8rem',
     },
     valueSuffix: '%',
     pointFormat:
-      '<p style="padding-top:20px">{series.name}</p><br><span style="font-size:2em; color: {point.color}; font-weight: bold">{point.y}</span>',
+      '<p style="padding-top:20px">{series.name}</p><br><span style="font-size:1.5rem; color: {point.color}; font-weight: bold">{point.y}</span>',
     positioner: () => ({ x: 30, y: 30 }),
   },
   pane: {
@@ -73,7 +73,6 @@ const options = (
 });
 
 const AttendanceCharts: VFC<HighchartsReact.Props> = (props) => {
-  const [screenHeight, setScreenHeight] = useState(0);
   const queryClient = useQueryClient();
   const cacheData = queryClient.getQueryData<Attendance[]>('attendance');
   const { data, isLoading } = useGetAttendance();
@@ -93,10 +92,6 @@ const AttendanceCharts: VFC<HighchartsReact.Props> = (props) => {
     ],
   }));
 
-  useEffect(() => {
-    setScreenHeight(window.innerHeight);
-  }, []);
-
   return (
     <>
       {isLoading && <LoadingSpiner />}
@@ -110,6 +105,16 @@ const AttendanceCharts: VFC<HighchartsReact.Props> = (props) => {
           {...props}
         />
       )}
+      {attendanceData?.map(({ title, rate }, index) => (
+        <span className='inline-flex mr-4 items-center sm:text-base text-sm'>
+          <span
+            style={{ background: colors[index] }}
+            className='inline-block sm:w-4 sm:h-4 mr-1 w-3 h-3'
+          />
+          {title}
+          {rate}
+        </span>
+      ))}
     </>
   );
 };
