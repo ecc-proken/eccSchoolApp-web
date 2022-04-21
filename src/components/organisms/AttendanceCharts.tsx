@@ -106,7 +106,10 @@ const AttendanceCharts: VFC<HighchartsReact.Props> = (props) => {
         />
       )}
       {attendanceData?.map(({ title, rate }, index) => (
-        <span className='inline-flex mr-4 items-center sm:text-base text-sm'>
+        <span
+          key={title + rate}
+          className='inline-flex mr-4 items-center sm:text-base text-sm'
+        >
           <span
             style={{ background: colors[index] }}
             className='inline-block sm:w-4 sm:h-4 mr-1 w-3 h-3'
