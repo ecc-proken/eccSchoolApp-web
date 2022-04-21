@@ -1,5 +1,5 @@
 import { atom } from 'recoil';
-import UserData from 'types/userData';
+import UserData from 'types/userInfo';
 
 const userDataState = atom<UserData>({
   key: 'userDataState',

@@ -1,4 +1,4 @@
-import UserData from 'types/userData';
+import UserData from 'types/userInfo';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import userDataState from 'globalState/userDataState';
