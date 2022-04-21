@@ -96,7 +96,7 @@ const AttendanceCharts: VFC<HighchartsReact.Props> = (props) => {
     <>
       {isLoading && <LoadingSpiner />}
       {series === undefined ? (
-        '出席率の取得に失敗しました'
+        !isLoading && '出席率の取得に失敗しました'
       ) : (
         <HighchartsReact
           highcharts={Highcharts}
