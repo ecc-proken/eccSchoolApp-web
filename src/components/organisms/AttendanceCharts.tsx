@@ -7,11 +7,22 @@ import Highcharts from 'highcharts';
 import highchartsMore from 'highcharts/highcharts-more.js';
 import solidGauge from 'highcharts/modules/solid-gauge.js';
 import HighchartsReact from 'highcharts-react-official';
+import colors from 'theme/colors';
 
 highchartsMore(Highcharts);
 solidGauge(Highcharts);
 
-const options = {
+const options = (
+  series: {
+    name: string;
+    data: {
+      color: string;
+      radius: string;
+      innerRadius: string;
+      y: number;
+    }[];
+  }[],
+) => ({
   chart: {
     type: 'solidgauge',
     height: '110%',
@@ -32,6 +43,7 @@ const options = {
     valueSuffix: '%',
     pointFormat:
       '<p style="padding-top:20px">{series.name}</p><br><span style="font-size:2em; color: {point.color}; font-weight: bold">{point.y}</span>',
+    positioner: () => ({ x: 30, y: 30 }),
   },
   pane: {
     startAngle: 0,
@@ -57,42 +69,8 @@ const options = {
       rounded: true,
     },
   },
-  series: [
-    {
-      name: 'Move',
-      data: [
-        {
-          color: '#834838',
-          radius: '100%',
-          innerRadius: '82%',
-          y: 80,
-        },
-      ],
-    },
-    {
-      name: 'Exercise',
-      data: [
-        {
-          color: '#834838',
-          radius: '80%',
-          innerRadius: '62%',
-          y: 65,
-        },
-      ],
-    },
-    {
-      name: 'Stand',
-      data: [
-        {
-          color: '#834838',
-          radius: '60%',
-          innerRadius: '42%',
-          y: 50,
-        },
-      ],
-    },
-  ],
-};
+  series,
+});
 
 const AttendanceCharts: VFC<HighchartsReact.Props> = (props) => {
   const [screenHeight, setScreenHeight] = useState(0);
@@ -103,8 +81,17 @@ const AttendanceCharts: VFC<HighchartsReact.Props> = (props) => {
 
   const chartComponentRef = useRef<HighchartsReact.RefObject>(null);
 
-  // eslint-disable-next-line no-console
-  console.log(screenHeight, attendanceData);
+  const series = attendanceData?.map(({ title, rate }, index) => ({
+    name: title,
+    data: [
+      {
+        color: colors[index],
+        radius: `${(90 / attendanceData.length) * index + 10}%`,
+        innerRadius: `${(90 / attendanceData.length) * index + 10 + 10}%`,
+        y: Number(rate.slice(0, -1)),
+      },
+    ],
+  }));
 
   useEffect(() => {
     setScreenHeight(window.innerHeight);
@@ -113,33 +100,16 @@ const AttendanceCharts: VFC<HighchartsReact.Props> = (props) => {
   return (
     <>
       {isLoading && <LoadingSpiner />}
-      <HighchartsReact
-        highcharts={Highcharts}
-        options={options}
-        ref={chartComponentRef}
-        {...props}
-      />
-      {/* <ResponsiveContainer width='100%' height={screenHeight}>
-        <RadarChart
-          outerRadius={100}
-          // width={500}
-          // height={500}
-          data={attendanceData?.map((d) => ({
-            title: d.title,
-            rate: Number(d.rate.slice(0, -1)),
-          }))}
-        >
-          <PolarGrid />
-          <PolarAngleAxis dataKey='title' />
-          <PolarRadiusAxis />
-          <Radar
-            dataKey='rate'
-            stroke='#8884d8'
-            fill='#8884d8'
-            fillOpacity={0.6}
-          />
-        </RadarChart>
-      </ResponsiveContainer> */}
+      {series === undefined ? (
+        '出席率の取得に失敗しました'
+      ) : (
+        <HighchartsReact
+          highcharts={Highcharts}
+          options={options(series)}
+          ref={chartComponentRef}
+          {...props}
+        />
+      )}
     </>
   );
 };
