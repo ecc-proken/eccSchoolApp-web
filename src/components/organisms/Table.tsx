@@ -10,7 +10,8 @@ const Table: VFC = () => {
   const cacheData = queryClient.getQueryData<Timetable[]>('timetable');
   const { data, isLoading } = useGetTimetable();
   const timetableData = cacheData || data;
-
+  const date = new Date();
+  const weekdays = ['日', '月', '火', '水', '木', '金', '土'];
   /**
    * データとコマ目を受け取り、平日のみTableDataコンポーネントを返す
    * @date 2022-02-26
@@ -22,10 +23,16 @@ const Table: VFC = () => {
     { timetable, weekday }: Timetable,
     periodNumber: number,
   ) => {
+    // 曜日が一致したら背景を変更する
+    const selected = weekday === weekdays[date.getDay()];
     if (weekday === '土' || weekday === '日') return;
     if (timetable[periodNumber])
-      return <TableData key={weekday}>{timetable[periodNumber]}</TableData>;
-    return <TableData key={weekday} />;
+      return (
+        <TableData key={weekday} selected={selected}>
+          {timetable[periodNumber]}
+        </TableData>
+      );
+    return <TableData key={weekday} selected={selected} />;
   };
 
   return (
