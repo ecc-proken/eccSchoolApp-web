@@ -16,7 +16,7 @@ const Home: VFC = () => {
   return (
     <Layout pageTitle='ホーム'>
       <Title pageTitle='ホーム画面' />
-      <div className='grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-8 md:grid-cols-2 xl:grid-cols-3'>
+      <div className='grid grid-cols-1 gap-4 mt-8 md:gap-8 md:grid-cols-2 xl:mt-12 xl:grid-cols-3'>
         <HomeItem title='時間割' path='/timetable' icon={faTable}>
           今週の時間割を確認することが出来ます。
         </HomeItem>
