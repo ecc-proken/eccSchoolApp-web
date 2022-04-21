@@ -3,9 +3,9 @@ import Layout from 'components/template/Layout';
 import {
   faTable,
   faChartLine,
-  faBell,
-  faCalendarAlt,
-  faCog,
+  // faBell,
+  // faCalendarAlt,
+  // faCog,
 } from '@fortawesome/free-solid-svg-icons';
 import HomeItem from 'components/organisms/HomeItem';
 import Title from 'components/template/Title';
@@ -23,7 +23,7 @@ const Home: VFC = () => {
         <HomeItem title='出席率' path='/attendance' icon={faChartLine}>
           各授業の出席率を確認することが出来ます。
         </HomeItem>
-        <HomeItem title='学校からのお知らせ' path='/news' icon={faBell}>
+        {/* <HomeItem title='学校からのお知らせ' path='/news' icon={faBell}>
           学校からのお知らせを確認することが出来ます。
         </HomeItem>
         <HomeItem title='カレンダー' path='/calendar' icon={faCalendarAlt}>
@@ -31,7 +31,7 @@ const Home: VFC = () => {
         </HomeItem>
         <HomeItem title='設定' path='/settings' icon={faCog}>
           現在の設定を確認することが出来ます。
-        </HomeItem>
+        </HomeItem> */}
       </div>
     </Layout>
   );
