@@ -29,6 +29,7 @@ const FormInput: VFC<Props> = ({
           name={name}
           id={id}
           placeholder={placeholder}
+          autoComplete='username'
           className='block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:ring-accent focus:outline-none focus:ring focus:ring-opacity-40'
           onInput={onInput}
           required
@@ -63,6 +64,7 @@ const FormInput: VFC<Props> = ({
         onInput={onInput}
         required
         tabIndex={1}
+        autoComplete='current-password'
       />
       <label htmlFor={id} className='cursor-pointer absolute bottom-0 right-0'>
         <button type='button' onClick={onClick} tabIndex={1}>
