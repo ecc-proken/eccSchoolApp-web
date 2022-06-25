@@ -50,6 +50,7 @@ const options = (
   yAxis: {
     min: 0,
     max: 100,
+    tickAmount: 5,
     title: {
       text: '',
     },
