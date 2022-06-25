@@ -1,17 +1,25 @@
-import { memo, ReactNode, VFC } from 'react';
+import { memo, VFC } from 'react';
+import { subjectData } from 'types/timetable';
 
 type Props = {
-  children?: ReactNode;
+  tableData?: subjectData;
   selected?: boolean;
 };
-const TableData: VFC<Props> = ({ children, selected = false }) => {
+const TableData: VFC<Props> = ({ tableData, selected = false }) => {
   return (
     <td
-      className={`text-xs md:text-sm border-r text-gray-700 py-4 ${
+      className={`text-[10px] md:text-[0.9vw] border-r text-gray-700 h-[14vh] md:h-[18vh] px-1 ${
         selected ? 'bg-violet-50 bg-opacity-60' : ''
       }`}
     >
-      {children}
+      <p>{tableData?.subjectTitle}</p>
+      <span className='text-[10px] md:text-[0.8vw] text-gray-400'>
+        {tableData?.teacher.replace('　', ' ')}
+      </span>
+      <br />
+      <span className='text-[10px] md:text-[0.8vw] text-accent font-bold'>
+        {tableData?.classroom}
+      </span>
     </td>
   );
 };

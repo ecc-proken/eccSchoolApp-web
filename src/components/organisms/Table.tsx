@@ -10,10 +10,11 @@ const Table: VFC = () => {
   const cacheData = queryClient.getQueryData<Timetable[]>('timetable');
   const { data, isLoading } = useGetTimetable();
   const timetableData = cacheData || data;
+
   const date = new Date();
-  const weekdays = ['日', '月', '火', '水', '木', '金', '土'];
+  const weekdays = ['月', '火', '水', '木', '金'];
   /**
-   * データとコマ目を受け取り、平日のみTableDataコンポーネントを返す
+   * データとコマ目を受け取り、TableDataコンポーネントを返す
    * @date 2022-02-26
    * @param {Timetable} tableData
    * @param {number} periodNumber
@@ -25,12 +26,13 @@ const Table: VFC = () => {
   ) => {
     // 曜日が一致したら背景を変更する
     const selected = weekday === weekdays[date.getDay()];
-    if (weekday === '土' || weekday === '日') return;
     if (timetable[periodNumber])
       return (
-        <TableData key={weekday} selected={selected}>
-          {timetable[periodNumber]}
-        </TableData>
+        <TableData
+          key={weekday}
+          selected={selected}
+          tableData={timetable[periodNumber]}
+        />
       );
     return <TableData key={weekday} selected={selected} />;
   };
@@ -39,7 +41,7 @@ const Table: VFC = () => {
     <>
       {isLoading && <LoadingSpiner />}
 
-      <table className='min-w-full text-center mt-8 h-[94%]'>
+      <table className='min-w-full text-center h-[94%]'>
         <thead className='border bg-accent'>
           <tr>
             <th className='w-1/6 text-sm md:text-base font-bold text-white px-3 py-2 md:px-6 md:py-4'>
@@ -64,45 +66,60 @@ const Table: VFC = () => {
         </thead>
         <tbody className='h-full'>
           <tr className='bg-white border-b'>
-            <td className='py-4 border-x text-xs md:text-sm text-gray-700'>
-              1<br />
-              <span className='text-gray-400'>09:15 ~ 10:45</span>
+            <td className='h-[14vh] md:h-[18vh] py-2 border-x text-xs md:text-[1vw] text-gray-700'>
+              1限
+              <br />
+              <span className='text-gray-400 text-[10px] md:text-[.9vw] pt-1 inline-block'>
+                09:15 ~ 10:45
+              </span>
             </td>
             {timetableData?.map((timetable) =>
               tableDataTagCreate(timetable, 1),
             )}
           </tr>
           <tr className='bg-white border-b'>
-            <td className='py-4 border-x text-xs md:text-sm text-gray-700'>
-              2<br />
-              <span className='text-gray-400'>11:00 ~ 12:30</span>
+            <td className='h-[14vh] md:h-[18vh] py-2 border-x text-xs md:text-[1vw] text-gray-700'>
+              2限
+              <br />
+              <span className='text-gray-400 text-[10px] md:text-[.9vw] pt-1 inline-block'>
+                11:00 ~ 12:30
+              </span>
             </td>
             {timetableData?.map((timetable) =>
               tableDataTagCreate(timetable, 2),
             )}
           </tr>
           <tr className='bg-white border-b'>
-            <td className='py-4 border-x text-xs md:text-sm text-gray-700'>
-              3<br />
-              <span className='text-gray-400'>13:30 ~ 15:00</span>
+            <td className='h-[14vh] md:h-[18vh] py-2 border-x text-xs md:text-[1vw] text-gray-700'>
+              3限
+              <br />
+              <span className='text-gray-400 text-[10px] md:text-[.9vw] pt-1 inline-block'>
+                13:30 ~ 15:00
+              </span>
             </td>
             {timetableData?.map((timetable) =>
               tableDataTagCreate(timetable, 3),
             )}
           </tr>
           <tr className='bg-white border-b'>
-            <td className='py-4 border-x text-xs md:text-sm text-gray-700'>
-              4<br />
-              <span className='text-gray-400'>15:15 ~ 16:45</span>
+            <td className='h-[14vh] md:h-[18vh] py-2 border-x text-xs md:text-[1vw] text-gray-700'>
+              4限
+              <br />
+              <span className='text-gray-400 text-[10px] md:text-[.9vw] pt-1 inline-block'>
+                15:15 ~ 16:45
+              </span>
             </td>
             {timetableData?.map((timetable) =>
               tableDataTagCreate(timetable, 4),
             )}
           </tr>
           <tr className='bg-white border-b'>
-            <td className='py-4 border-x text-xs md:text-sm text-gray-700'>
-              5<br />
-              <span className='text-gray-400'>17:00 ~ 18:30</span>
+            <td className='h-[14vh] md:h-[18vh] py-2 border-x text-xs md:text-[1vw] text-gray-700'>
+              5限
+              <br />
+              <span className='text-gray-400 text-[10px] md:text-[.9vw] pt-1 inline-block'>
+                17:00 ~ 18:30
+              </span>
             </td>
             {timetableData?.map((timetable) =>
               tableDataTagCreate(timetable, 5),
