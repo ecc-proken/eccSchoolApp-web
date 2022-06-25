@@ -5,7 +5,7 @@ import AttendanceCharts from 'components/organisms/AttendanceCharts';
 
 const Attendance: VFC = () => {
   return (
-    <Layout pageTitle='出席率'>
+    <Layout>
       <Title pageTitle='出席率' />
       <AttendanceCharts />
     </Layout>

@@ -12,9 +12,8 @@ import Tabbar from 'components/molecules/Tabbar';
 
 type Props = {
   children: ReactNode;
-  pageTitle: string;
 };
-const Layout: VFC<Props> = ({ pageTitle, children }) => {
+const Layout: VFC<Props> = ({ children }) => {
   const resetUserDataState = useResetRecoilState(userDataState);
   const navigation = useNavigate();
   const { pathname } = useLocation();
@@ -64,12 +63,7 @@ const Layout: VFC<Props> = ({ pageTitle, children }) => {
       <Tabbar />
       {/* footer menu end */}
       <div className='min-h-full w-full overflow-scroll pb-20 sm:pb-0'>
-        <AnimationDiv className='w-full px-2 py-4 md:px-6 md:py-10'>
-          <h1 className='text-3xl font-semibold text-center text-gray-800 uppercase lg:text-4xl'>
-            {pageTitle}
-          </h1>
-          {children}
-        </AnimationDiv>
+        <AnimationDiv className='w-full px-2 py-4'>{children}</AnimationDiv>
       </div>
     </div>
   );

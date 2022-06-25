@@ -5,7 +5,7 @@ import { VFC } from 'react';
 
 const Timetable: VFC = () => {
   return (
-    <Layout pageTitle='時間割'>
+    <Layout>
       <Title pageTitle='時間割' />
       <Table />
     </Layout>

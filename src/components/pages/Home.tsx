@@ -14,7 +14,7 @@ import useGetAllData from 'hooks/useGetAllData';
 const Home: VFC = () => {
   useGetAllData();
   return (
-    <Layout pageTitle='ホーム'>
+    <Layout>
       <Title pageTitle='ホーム画面' />
       <div className='grid grid-cols-1 gap-4 mt-8 md:gap-8 md:grid-cols-2 xl:mt-12 xl:grid-cols-3'>
         <HomeItem title='時間割' path='/timetable' icon={faTable}>
