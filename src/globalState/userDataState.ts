@@ -4,8 +4,8 @@ import UserData from 'types/userInfo';
 const userDataState = atom<UserData>({
   key: 'userDataState',
   default: {
-    userId: null,
-    password: null,
+    id: null,
+    pw: null,
   },
 });
 export default userDataState;

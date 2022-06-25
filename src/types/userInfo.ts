@@ -1,5 +1,5 @@
 type UserData = {
-  userId: string | null;
-  password: string | null;
+  id: string | null;
+  pw: string | null;
 };
 export default UserData;

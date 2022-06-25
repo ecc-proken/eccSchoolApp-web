@@ -11,14 +11,14 @@ const useUserDataState = () => {
   /**
    * ユーザーデータを受け取り、atomとlocalstorageに格納します。
    * @date 2022-02-23
-   * @param {string} userId
-   * @param {string}  password
+   * @param {string} id
+   * @param {string}  pw
    * @returns {void}
    */
-  const setUserDataHandler = (userId: string, password: string) => {
-    setUserData({ userId, password });
-    localStorage.setItem('userId', userId);
-    localStorage.setItem('password', password);
+  const setUserDataHandler = (id: string, pw: string) => {
+    setUserData({ id, pw });
+    localStorage.setItem('id', id);
+    localStorage.setItem('pw', pw);
   };
   return setUserDataHandler;
 };

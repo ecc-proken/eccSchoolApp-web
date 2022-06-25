@@ -52,7 +52,7 @@ const FormInput: VFC<Props> = ({
           className='text-sm text-gray-400 focus:text-accent hover:text-accent hover:underline'
           rel='noreferrer'
         >
-          Forgot password?
+          Forgot Password?
         </a>
       </div>
       <input

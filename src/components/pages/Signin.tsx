@@ -22,7 +22,7 @@ const Signin: VFC = () => {
    * @returns {void}
    */
   useEffect(() => {
-    if (userData.userId === null || userData.password === null) return;
+    if (userData.id === null || userData.pw === null) return;
     setIsLoading(true);
     axios
       .post<{

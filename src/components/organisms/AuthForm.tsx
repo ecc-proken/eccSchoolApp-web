@@ -16,8 +16,8 @@ type Props = {
   setIsLoading: Dispatch<SetStateAction<boolean>>;
 };
 const AuthForm: VFC<Props> = ({ setIsLoading }) => {
-  const [userId, setUserId] = useState('');
-  const [password, setPassword] = useState('');
+  const [id, setId] = useState('');
+  const [pw, setPw] = useState('');
   const [authResult, setAuthResult] = useState<null | boolean>(null);
   const setUserDataHandler = useUserDataState();
   const navigate = useNavigate();
@@ -31,18 +31,18 @@ const AuthForm: VFC<Props> = ({ setIsLoading }) => {
   const onInput: FormEventHandler<HTMLInputElement> = useCallback(
     ({ currentTarget }) => {
       switch (currentTarget.name) {
-        case 'userId':
-          setUserId(currentTarget.value);
+        case 'id':
+          setId(currentTarget.value);
           break;
-        case 'password':
-          setPassword(currentTarget.value);
+        case 'pw':
+          setPw(currentTarget.value);
           break;
         default:
           console.error('key が正しくありません');
           break;
       }
     },
-    [setUserId, setPassword],
+    [setId, setPw],
   );
 
   /**
@@ -60,23 +60,23 @@ const AuthForm: VFC<Props> = ({ setIsLoading }) => {
       message: 'success' | 'error';
       status: 200 | 401;
     }>(`${process.env.REACT_APP_API_URL}/signin`, {
-      userId,
-      password,
+      id,
+      pw,
     });
     setIsLoading(false);
     if (!data) return console.error('通信に失敗しました。');
     if (data.status !== 200) return setAuthResult(false);
 
     setAuthResult(true);
-    setUserDataHandler(userId, password);
+    setUserDataHandler(id, pw);
     navigate('/');
   };
 
   return (
     <form className='space-y-6' onSubmit={onSubmit}>
       <FormInput
-        id='userId'
-        name='userId'
+        id='id'
+        name='id'
         type='tel'
         placeholder='2000000'
         onInput={onInput}
@@ -84,8 +84,8 @@ const AuthForm: VFC<Props> = ({ setIsLoading }) => {
         Student number
       </FormInput>
       <FormInput
-        id='password'
-        name='password'
+        id='pw'
+        name='pw'
         type='password'
         placeholder='Your Password'
         onInput={onInput}
