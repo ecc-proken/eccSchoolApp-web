@@ -6,15 +6,17 @@ import { useRecoilValue } from 'recoil';
 import Timetable from 'types/timetable';
 
 const getTimetable = async (userData: UserData) => {
-  const timetableData: Timetable[] = [];
-  // eslint-disable-next-line no-restricted-syntax
-  for await (const num of [...new Array(5)].map((_, i) => i + 1)) {
-    const { data } = await axios.post<Timetable>(
-      `${process.env.REACT_APP_API_URL}/timetable/${num}`,
-      userData,
-    );
-    timetableData.push(data);
-  }
+  const timetableData: Timetable[] = await Promise.all(
+    [...new Array(5)]
+      .map((_, i) => i + 1)
+      .map(async (number) => {
+        const { data } = await axios.post<Timetable>(
+          `${process.env.REACT_APP_API_URL}/timetable/${number}`,
+          userData,
+        );
+        return data;
+      }),
+  );
   return timetableData;
 };
 
