@@ -7,7 +7,6 @@ import Highcharts from 'highcharts';
 import highchartsMore from 'highcharts/highcharts-more.js';
 import solidGauge from 'highcharts/modules/solid-gauge.js';
 import HighchartsReact from 'highcharts-react-official';
-import colors from 'theme/colors';
 
 highchartsMore(Highcharts);
 solidGauge(Highcharts);
@@ -15,20 +14,15 @@ solidGauge(Highcharts);
 const options = (
   series: {
     name: string;
-    data: {
-      color: string;
-      radius: string;
-      innerRadius: string;
-      y: number;
-    }[];
+    data: number[];
   }[],
 ) => ({
   chart: {
-    type: 'solidgauge',
+    type: 'column',
     height: '450px',
   },
   title: {
-    text: '',
+    text: '出席状況',
     style: {
       fontSize: '1rem',
     },
@@ -42,34 +36,35 @@ const options = (
     },
     valueSuffix: '%',
     pointFormat:
-      '<p style="padding-top:20px">{series.name}</p><br><span style="font-size:1.5rem; color: {point.color}; font-weight: bold">{point.y}</span>',
-    positioner: () => ({ x: 30, y: 30 }),
+      '<span style="font-size:1.5rem; font-weight: bold">{point.y}</span>',
   },
-  pane: {
-    startAngle: 0,
-    endAngle: 360,
-    background: {
-      backgroundColor: '#ffffff',
-      borderWidth: 0,
+  legend: {
+    enabled: false,
+  },
+  xAxis: {
+    categories: series.map((s) => s.name),
+    title: {
+      margin: 0,
     },
   },
   yAxis: {
     min: 0,
     max: 100,
-    lineWidth: 0,
-    tickPositions: [],
-  },
-  plotOptions: {
-    solidgauge: {
-      dataLabels: {
-        enabled: false,
-      },
-      linecap: 'round',
-      stickyTracking: false,
-      rounded: true,
+    title: {
+      text: '',
     },
   },
-  series,
+  plotOptions: {
+    column: {
+      depth: 250,
+    },
+  },
+  series: [
+    {
+      name: 'Attendance',
+      data: series.map(({ data }) => data),
+    },
+  ],
 });
 
 const AttendanceCharts: VFC<HighchartsReact.Props> = (props) => {
@@ -80,16 +75,9 @@ const AttendanceCharts: VFC<HighchartsReact.Props> = (props) => {
 
   const chartComponentRef = useRef<HighchartsReact.RefObject>(null);
 
-  const series = attendanceData?.map(({ title, rate }, index) => ({
+  const series = attendanceData?.map(({ title, rate }) => ({
     name: title,
-    data: [
-      {
-        color: colors[index],
-        radius: `${(90 / attendanceData.length) * index + 10}%`,
-        innerRadius: `${(90 / attendanceData.length) * index + 10 + 10}%`,
-        y: Number(rate.slice(0, -1)),
-      },
-    ],
+    data: [Number(rate.slice(0, -1))],
   }));
 
   return (
@@ -105,19 +93,6 @@ const AttendanceCharts: VFC<HighchartsReact.Props> = (props) => {
           {...props}
         />
       )}
-      {attendanceData?.map(({ title, rate }, index) => (
-        <span
-          key={title + rate}
-          className='inline-flex mr-4 items-center sm:text-base text-sm'
-        >
-          <span
-            style={{ background: colors[index] }}
-            className='inline-block sm:w-4 sm:h-4 mr-1 w-3 h-3'
-          />
-          {title}
-          {rate}
-        </span>
-      ))}
     </>
   );
 };
