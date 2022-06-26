@@ -1,12 +1,8 @@
 import { memo, ReactNode, VFC } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignOut } from '@fortawesome/free-solid-svg-icons';
 import NavItem from 'components/molecules/NavItem';
 import Logo from 'assets/logo.svg';
 import tabDataList from 'data/tabDataList';
-import { useResetRecoilState } from 'recoil';
-import userDataState from 'globalState/userDataState';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import AnimationDiv from './AnimationDiv';
 import Tabbar from 'components/molecules/Tabbar';
 
@@ -14,20 +10,7 @@ type Props = {
   children: ReactNode;
 };
 const Layout: VFC<Props> = ({ children }) => {
-  const resetUserDataState = useResetRecoilState(userDataState);
-  const navigation = useNavigate();
   const { pathname } = useLocation();
-
-  /**
-   * localstrage の中身を削除して state を default に戻します。
-   * @date 2022-02-24
-   * @returns {void}
-   */
-  const signout = () => {
-    resetUserDataState();
-    localStorage.clear();
-    navigation('/signin');
-  };
 
   return (
     <div className='min-h-full flex'>
@@ -47,14 +30,6 @@ const Layout: VFC<Props> = ({ children }) => {
                 selected={pathname === path}
               />
             ))}
-            <button
-              className='w-full uppercase text-gray-500 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-accent hover:bg-gray-100'
-              type='button'
-              onClick={signout}
-            >
-              <FontAwesomeIcon icon={faSignOut} className='text-xl' />
-              <span className='mx-4 text-base font-normal'>ログアウト</span>
-            </button>
           </nav>
         </div>
       </div>
