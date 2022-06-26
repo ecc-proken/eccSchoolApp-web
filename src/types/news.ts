@@ -6,4 +6,12 @@ type News = {
   link: string;
 };
 
+export type NewsDetail = {
+  title: string;
+  data: string;
+  date: string;
+  tag: string;
+  attachments: string[];
+};
+
 export default News;
