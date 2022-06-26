@@ -6,6 +6,7 @@ import { useRecoilValue } from 'recoil';
 import userDataState from 'globalState/userDataState';
 import NotFound from 'components/pages/NotFound';
 import Timetable from 'components/pages/Timetable';
+import NewsDetail from 'components/pages/NewsDetail';
 import Attendance from 'components/pages/Attendance';
 import News from 'components/pages/News';
 import { AnimatePresence } from 'framer-motion';
@@ -43,7 +44,10 @@ const App: VFC = () => {
           <Route path='/signin' element={<Signin />} />
           <Route path='/timetable' element={<Timetable />} />
           <Route path='/attendance' element={<Attendance />} />
-          <Route path='/news' element={<News />} />
+          <Route path='/news'>
+            <Route index element={<News />} />
+            <Route path=':id' element={<NewsDetail />} />
+          </Route>
           <Route path='*' element={<NotFound />} />
         </Routes>
       </AnimatePresence>
