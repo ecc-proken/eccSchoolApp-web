@@ -56,20 +56,27 @@ const AuthForm: VFC<Props> = ({ setIsLoading }) => {
   const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    const { data } = await axios.post<{
-      message: 'success' | 'error';
-      status: 200 | 401;
-    }>(`${process.env.REACT_APP_API_URL}/signin`, {
-      id,
-      pw,
-    });
-    setIsLoading(false);
-    if (!data) return console.error('通信に失敗しました。');
-    if (data.status !== 200) return setAuthResult(false);
-
-    setAuthResult(true);
-    setUserDataHandler(id, pw);
-    navigate('/');
+    axios
+      .post<{
+        message: 'success' | 'error';
+        status: 200 | 401;
+      }>(`${process.env.REACT_APP_API_URL}/signin`, {
+        id,
+        pw,
+      })
+      .then((data) => {
+        if (!data) return console.error('通信に失敗しました。');
+        if (data.status !== 200) return setAuthResult(false);
+        setAuthResult(true);
+        setUserDataHandler(id, pw);
+        navigate('/');
+        setIsLoading(false);
+      })
+      .catch(() => {
+        // eslint-disable-next-line no-alert
+        alert('ログインに失敗しました');
+        setIsLoading(false);
+      });
   };
 
   return (
