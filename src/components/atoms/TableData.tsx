@@ -9,22 +9,22 @@ type Props = {
 const TableData: VFC<Props> = ({ tableData, selected = false, rate }) => {
   return (
     <td
-      className={`text-[10px] md:text-[0.9vw] border-r text-gray-700 h-[14vh] md:h-[18vh] px-1 ${
+      className={`text-[10px] md:text-[12px] xl:text-[14px] border-r text-gray-700 h-[14vh] md:h-[18vh] px-1 ${
         selected ? 'bg-violet-50 bg-opacity-60' : ''
       }`}
     >
       <p>{tableData?.subjectTitle}</p>
       {rate !== undefined ? (
-        <span className='text-[10px] md:text-[0.8vw] text-gray-400'>
+        <span className='text-[8px] md:text-[10px] xl:text-[12px] text-gray-400'>
           出席率: <span className='text-accent font-bold'>{rate}</span>
         </span>
       ) : (
         <>
-          <span className='text-[10px] md:text-[0.8vw] text-gray-400'>
+          <span className='text-[8px] md:text-[10px] xl:text-[12px] text-gray-400'>
             {tableData?.teacher.replace('　', ' ')}
           </span>
           <br />
-          <span className='text-[10px] md:text-[0.8vw] text-accent font-bold'>
+          <span className='text-[8px] md:text-[10px] xl:text-[12px] text-accent font-bold'>
             {tableData?.classroom}
           </span>
         </>
