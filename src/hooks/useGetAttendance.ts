@@ -19,8 +19,8 @@ const useGetAttendance = () => {
   return useQuery<Attendance[]>({
     queryKey: 'attendance',
     queryFn,
-    cacheTime: 30000,
-    staleTime: 30000,
+    cacheTime: 10000000,
+    staleTime: 10000000,
   });
 };
 
