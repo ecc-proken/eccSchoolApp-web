@@ -88,10 +88,10 @@ const Table: VFC = () => {
         </thead>
         <tbody className='h-full'>
           <tr className='bg-white border-b'>
-            <td className='h-[14vh] md:h-[18vh] py-2 border-x text-xs md:text-[1vw] text-gray-700'>
+            <td className='text-[12px] md:text-[12px] xl:text-[14px] py-2 border-x text-gray-700'>
               1限
               <br />
-              <span className='text-gray-400 text-[10px] md:text-[.9vw] pt-1 inline-block'>
+              <span className='text-gray-400 text-[10px] md:text-[10px] xl:text-[12px] pt-1 inline-block'>
                 09:15 ~ 10:45
               </span>
             </td>
@@ -100,10 +100,10 @@ const Table: VFC = () => {
             )}
           </tr>
           <tr className='bg-white border-b'>
-            <td className='h-[14vh] md:h-[18vh] py-2 border-x text-xs md:text-[1vw] text-gray-700'>
+            <td className='text-[12px] md:text-[12px] xl:text-[14px] py-2 border-x text-gray-700'>
               2限
               <br />
-              <span className='text-gray-400 text-[10px] md:text-[.9vw] pt-1 inline-block'>
+              <span className='text-gray-400 text-[10px] md:text-[10px] xl:text-[12px] pt-1 inline-block'>
                 11:00 ~ 12:30
               </span>
             </td>
@@ -112,10 +112,10 @@ const Table: VFC = () => {
             )}
           </tr>
           <tr className='bg-white border-b'>
-            <td className='h-[14vh] md:h-[18vh] py-2 border-x text-xs md:text-[1vw] text-gray-700'>
+            <td className='text-[12px] md:text-[12px] xl:text-[14px] py-2 border-x text-gray-700'>
               3限
               <br />
-              <span className='text-gray-400 text-[10px] md:text-[.9vw] pt-1 inline-block'>
+              <span className='text-gray-400 text-[10px] md:text-[10px] xl:text-[12px] pt-1 inline-block'>
                 13:30 ~ 15:00
               </span>
             </td>
@@ -124,10 +124,10 @@ const Table: VFC = () => {
             )}
           </tr>
           <tr className='bg-white border-b'>
-            <td className='h-[14vh] md:h-[18vh] py-2 border-x text-xs md:text-[1vw] text-gray-700'>
+            <td className='text-[12px] md:text-[12px] xl:text-[14px] py-2 border-x text-gray-700'>
               4限
               <br />
-              <span className='text-gray-400 text-[10px] md:text-[.9vw] pt-1 inline-block'>
+              <span className='text-gray-400 text-[10px] md:text-[10px] xl:text-[12px] pt-1 inline-block'>
                 15:15 ~ 16:45
               </span>
             </td>
@@ -136,10 +136,10 @@ const Table: VFC = () => {
             )}
           </tr>
           <tr className='bg-white border-b'>
-            <td className='h-[14vh] md:h-[18vh] py-2 border-x text-xs md:text-[1vw] text-gray-700'>
+            <td className='text-[12px] md:text-[12px] xl:text-[14px] py-2 border-x text-gray-700'>
               5限
               <br />
-              <span className='text-gray-400 text-[10px] md:text-[.9vw] pt-1 inline-block'>
+              <span className='text-gray-400 text-[10px] md:text-[10px] xl:text-[12px] pt-1 inline-block'>
                 17:00 ~ 18:30
               </span>
             </td>
@@ -154,7 +154,7 @@ const Table: VFC = () => {
         disabled={fetchAttendanceData.isLoading}
         type='button'
         onClick={attendanceModeHandler}
-        className='fixed bottom-16 md:bottom-4 left-2/4 -translate-x-1/2 w-40 text-white bg-accent hover:opacity-70 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 inline-flex items-center justify-center'
+        className='fixed bottom-16 md:bottom-4 left-2/4 -translate-x-1/2 w-40 text-white bg-accent hover:opacity-70 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 inline-flex items-center justify-center transition-all duration-300 ease-in-out hover:shadow-3xl focus:shadow-3xl'
       >
         {fetchAttendanceData.isLoading && (
           <svg
