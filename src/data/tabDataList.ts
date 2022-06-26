@@ -1,7 +1,7 @@
 import {
   faTable,
   faChartLine,
-  // faBell,
+  faBell,
   // faCalendarAlt,
   // faCog,
   faHome,
@@ -23,11 +23,11 @@ const tabDataList = [
     pageName: '出席率',
     icon: faChartLine,
   },
-  // {
-  //   path: '/news',
-  //   pageName: 'お知らせ',
-  //   icon: faBell,
-  // },
+  {
+    path: '/news',
+    pageName: 'お知らせ',
+    icon: faBell,
+  },
   // {
   //   path: '/calendar',
   //   pageName: 'カレンダー',
