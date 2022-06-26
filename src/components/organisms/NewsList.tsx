@@ -39,24 +39,24 @@ const NewsList: VFC = () => {
       {isLoading && <LoadingSpiner />}
       <div className='w-full shadow p-5 rounded-lg bg-white mb-2'>
         <div className='flex items-center justify-between'>
-          <p className='font-medium'>絞り込み</p>
+          <p className='font-medium text-xs md:text-sm'>絞り込み</p>
 
           <button
             type='button'
             onClick={resetFilter}
-            className='px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium rounded-md hover:opacity-70'
+            className='px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs md:text-sm font-medium rounded-md hover:opacity-70'
           >
             絞り込みを解除
           </button>
         </div>
 
         <div>
-          <div className='grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 mt-4'>
+          <div className='grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 md:gap-4 gap-2 mt-4'>
             {tagList.map((tag, i) => (
               <button
                 type='button'
                 key={tag}
-                className={`px-4 py-3 w-full rounded-md text-xs hover:opacity-70 transition-all duration-300 ease-in-out hover:shadow-3xl focus:shadow-3xl ${
+                className={`p-1 md:px-4 md:py-3 w-full rounded-md text-[10px] md:text-xs hover:opacity-70 transition-all duration-300 ease-in-out ${
                   filterName.includes(tag)
                     ? `${colors[i]} text-gray-50`
                     : 'bg-gray-100'
