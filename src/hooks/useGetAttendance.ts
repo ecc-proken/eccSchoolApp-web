@@ -10,7 +10,7 @@ const getAttendance = async (userData: UserData) => {
     `${process.env.REACT_APP_API_URL}/attendance`,
     userData,
   );
-  return data;
+  return data.map((a) => ({ ...a, title: a.title.replace('?', '') }));
 };
 
 const useGetAttendance = () => {
