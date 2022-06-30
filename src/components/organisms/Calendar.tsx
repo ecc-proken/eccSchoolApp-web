@@ -40,22 +40,30 @@ const localizer = dateFnsLocalizer({
 const now = new Date();
 const Calendar: VFC = () => {
   const [events, setEvents] = useState<CalendarEvent[]>();
+  const [currentDate, setCurrentDate] = useState(now);
+  const [isLoading, setIsLoading] = useState(true);
   useGetEvents({
-    year: now.getFullYear(),
-    month: now.getMonth() + 1,
-  }).then((d) =>
-    JSON.stringify(events) === JSON.stringify(d) ? null : setEvents(d),
-  );
+    year: currentDate.getFullYear(),
+    month: currentDate.getMonth() + 1,
+  }).then((d) => {
+    if (JSON.stringify(events) === JSON.stringify(d)) return;
+    setIsLoading(false);
+    setEvents(d);
+  });
 
   return (
     <>
-      {!events && <LoadingSpiner />}
+      {isLoading && <LoadingSpiner />}
 
       <BigCalendar
         localizer={localizer}
         messages={messages}
         events={events}
         toolbar
+        onNavigate={(a) => {
+          setIsLoading(true);
+          setCurrentDate(a);
+        }}
         className='h-full text-xs md:text-sm'
         views={['month']}
       />
