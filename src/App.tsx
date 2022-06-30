@@ -9,6 +9,7 @@ import Timetable from 'components/pages/Timetable';
 import NewsDetail from 'components/pages/NewsDetail';
 import Attendance from 'components/pages/Attendance';
 import News from 'components/pages/News';
+import CalendarPage from 'components/pages/CalendarPage';
 import { AnimatePresence } from 'framer-motion';
 import { QueryClient, QueryClientProvider } from 'react-query';
 // import { ReactQueryDevtools } from 'react-query/devtools';
@@ -48,6 +49,7 @@ const App: VFC = () => {
             <Route index element={<News />} />
             <Route path=':id' element={<NewsDetail />} />
           </Route>
+          <Route path='/Calendar' element={<CalendarPage />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </AnimatePresence>
