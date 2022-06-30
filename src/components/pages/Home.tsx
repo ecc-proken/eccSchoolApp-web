@@ -6,7 +6,7 @@ import {
   faBell,
   faSignOut,
   faLongArrowRight,
-  // faCalendarAlt,
+  faCalendarAlt,
   // faCog,
 } from '@fortawesome/free-solid-svg-icons';
 import HomeItem from 'components/organisms/HomeItem';
@@ -17,7 +17,10 @@ import userDataState from 'globalState/userDataState';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { QueryCache } from 'react-query';
+
 const Home: VFC = () => {
+  const queryCache = new QueryCache();
   useGetAllData();
   const resetUserDataState = useResetRecoilState(userDataState);
   const navigation = useNavigate();
@@ -29,6 +32,7 @@ const Home: VFC = () => {
   const signout = () => {
     resetUserDataState();
     localStorage.clear();
+    queryCache.clear();
     navigation('/signin');
   };
   return (
@@ -44,10 +48,10 @@ const Home: VFC = () => {
         <HomeItem title='学校からのお知らせ' path='/news' icon={faBell}>
           学校からのお知らせを確認することが出来ます。
         </HomeItem>
-        {/* <HomeItem title='カレンダー' path='/calendar' icon={faCalendarAlt}>
+        <HomeItem title='カレンダー' path='/calendar' icon={faCalendarAlt}>
           今後の予定を確認することが出来ます。
-          </HomeItem>
-          <HomeItem title='設定' path='/settings' icon={faCog}>
+        </HomeItem>
+        {/* <HomeItem title='設定' path='/settings' icon={faCog}>
           現在の設定を確認することが出来ます。
         </HomeItem> */}
 
