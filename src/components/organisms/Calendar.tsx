@@ -46,8 +46,8 @@ const Calendar: VFC = () => {
     year: currentDate.getFullYear(),
     month: currentDate.getMonth() + 1,
   }).then((d) => {
-    if (JSON.stringify(events) === JSON.stringify(d)) return;
     setIsLoading(false);
+    if (JSON.stringify(events) === JSON.stringify(d)) return;
     setEvents(d);
   });
 
