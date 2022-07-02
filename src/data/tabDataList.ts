@@ -3,7 +3,6 @@ import {
   faChartLine,
   faBell,
   faCalendarAlt,
-  // faCog,
   faHome,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -33,11 +32,6 @@ const tabDataList = [
     pageName: 'カレンダー',
     icon: faCalendarAlt,
   },
-  // {
-  //   path: '/settings',
-  //   pageName: '設定',
-  //   icon: faCog,
-  // },
 ] as const;
 
 export default tabDataList;
