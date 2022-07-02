@@ -10,6 +10,7 @@ import NewsDetail from 'components/pages/NewsDetail';
 import Attendance from 'components/pages/Attendance';
 import News from 'components/pages/News';
 import Links from 'components/pages/Links';
+import Download from 'components/pages/Download';
 import CalendarPage from 'components/pages/CalendarPage';
 import { AnimatePresence } from 'framer-motion';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -49,6 +50,7 @@ const App: VFC = () => {
           <Route path='/timetable' element={<Timetable />} />
           <Route path='/attendance' element={<Attendance />} />
           <Route path='/links' element={<Links />} />
+          <Route path='/download' element={<Download />} />
           <Route path='/news'>
             <Route index element={<News />} />
             <Route path=':id' element={<NewsDetail />} />

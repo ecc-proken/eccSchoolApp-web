@@ -8,6 +8,7 @@ import {
   faLongArrowRight,
   faCalendarAlt,
   faLink,
+  faDownload,
 } from '@fortawesome/free-solid-svg-icons';
 import HomeItem from 'components/organisms/HomeItem';
 import Title from 'components/template/Title';
@@ -39,6 +40,12 @@ const Home: VFC = () => {
     <Layout>
       <Title pageTitle='ホーム画面' />
       <div className='grid grid-cols-2 gap-4 md:gap-8 xl:mt-12 xl:grid-cols-3 pb-16'>
+        <HomeItem title='各種リンク' path='/links' icon={faLink}>
+          各種リンクや開発者へお問い合わせをすることが出来ます。
+        </HomeItem>
+        <HomeItem title='ホームに追加' path='/download' icon={faDownload}>
+          iPhone, Androidの方はホームに追加してご利用ください。
+        </HomeItem>
         <HomeItem title='時間割' path='/timetable' icon={faTable}>
           今週の時間割を確認することが出来ます。
         </HomeItem>
@@ -50,9 +57,6 @@ const Home: VFC = () => {
         </HomeItem>
         <HomeItem title='カレンダー' path='/calendar' icon={faCalendarAlt}>
           今後の予定を確認することが出来ます。
-        </HomeItem>
-        <HomeItem title='各種リンク' path='/links' icon={faLink}>
-          各種リンクや開発者へお問い合わせをすることが出来ます。
         </HomeItem>
 
         <button
