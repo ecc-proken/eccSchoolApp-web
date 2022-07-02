@@ -12,6 +12,7 @@ import News from 'components/pages/News';
 import CalendarPage from 'components/pages/CalendarPage';
 import { AnimatePresence } from 'framer-motion';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { usePageTracking } from 'hooks/useTracking';
 // import { ReactQueryDevtools } from 'react-query/devtools';
 
 const queryClient = new QueryClient({
@@ -27,6 +28,7 @@ const App: VFC = () => {
   const userData = useRecoilValue(userDataState);
   const navigate = useNavigate();
   const location = useLocation();
+  usePageTracking();
 
   /**
    * userData を取得し null の場合は signin に遷移する
