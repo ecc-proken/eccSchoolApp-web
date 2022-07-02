@@ -12,6 +12,8 @@ import {
 } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import ReactGA from 'react-ga4';
+
 type Props = {
   setIsLoading: Dispatch<SetStateAction<boolean>>;
 };
@@ -69,6 +71,7 @@ const AuthForm: VFC<Props> = ({ setIsLoading }) => {
         if (data.status !== 200) return setAuthResult(false);
         setAuthResult(true);
         setUserDataHandler(id, pw);
+        ReactGA.event('signin_success');
         navigate('/');
         setIsLoading(false);
       })
@@ -76,6 +79,7 @@ const AuthForm: VFC<Props> = ({ setIsLoading }) => {
         // eslint-disable-next-line no-alert
         alert('ログインに失敗しました');
         setIsLoading(false);
+        ReactGA.event('signin_failure');
       });
   };
 

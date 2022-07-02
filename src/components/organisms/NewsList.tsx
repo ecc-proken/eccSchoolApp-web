@@ -5,6 +5,7 @@ import { useState, VFC } from 'react';
 import { useQueryClient } from 'react-query';
 import colors from 'theme/color';
 import News from 'types/news';
+import ReactGA from 'react-ga4';
 
 export const tagList = [
   'キャリアセンター（旧 進路指導課）より',
@@ -24,6 +25,7 @@ const NewsList: VFC = () => {
   const [filterName, setFilterName] = useState<string[]>([]);
 
   const filterHandler = (tagName: string) => {
+    ReactGA.event('news_filter_add');
     setFilterName((prevState) =>
       prevState?.includes(tagName)
         ? prevState?.filter((d) => d !== tagName)
@@ -31,6 +33,7 @@ const NewsList: VFC = () => {
     );
   };
   const resetFilter = () => {
+    ReactGA.event('news_filter_reset');
     setFilterName([]);
   };
 

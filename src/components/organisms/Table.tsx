@@ -7,10 +7,14 @@ import { useQueryClient } from 'react-query';
 import Attendance from 'types/attendance';
 import Timetable from 'types/timetable';
 
+import ReactGA from 'react-ga4';
+
 const Table: VFC = () => {
   const [isAttendanceMode, setIsAttendanceMode] = useState(false);
 
   const attendanceModeHandler = () => {
+    ReactGA.event('timetable_toggle_mode');
+
     setIsAttendanceMode((prev) => !prev);
   };
 
