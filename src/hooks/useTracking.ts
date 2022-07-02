@@ -2,8 +2,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import ReactGA from 'react-ga4';
 
-// eslint-disable-next-line import/prefer-default-export
-export const usePageTracking = () => {
+const usePageTracking = () => {
   const location = useLocation();
 
   useEffect(() => {
@@ -14,3 +13,5 @@ export const usePageTracking = () => {
     });
   }, [location]);
 };
+
+export default usePageTracking;
