@@ -9,10 +9,10 @@ import News from 'types/news';
 export const tagList = [
   'キャリアセンター（旧 進路指導課）より',
   '学校からの連絡',
-  'その他',
   '図書室からの連絡',
   '事務局からの連絡',
   'クラブ・サークル',
+  'その他',
 ];
 
 const NewsList: VFC = () => {
@@ -71,7 +71,7 @@ const NewsList: VFC = () => {
       </div>
 
       <div className='bg-white shadow overflow-hidden sm:rounded-md'>
-        <ul className='divide-y divide-gray-200'>
+        <ul className='divide-y divide-gray-200 pb-14 md:pb-0'>
           {newsData
             ?.filter((d) =>
               filterName.length !== 0 ? filterName.includes(d.tag) : true,

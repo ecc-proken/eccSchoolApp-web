@@ -15,8 +15,8 @@ const Layout: VFC<Props> = ({ children }) => {
   return (
     <div className='min-h-full flex'>
       {/* side start */}
-      <div className='min-h-fit sm:block hidden shadow-lg relative w-80'>
-        <div className='bg-white h-full rounded-2xl'>
+      <div className='sm:block hidden shadow-lg relative w-80'>
+        <div className='bg-white h-fit rounded-2xl'>
           <div className='flex items-center justify-center pt-6'>
             <img src={Logo} alt='logo' className='h-16' />
           </div>
@@ -37,7 +37,7 @@ const Layout: VFC<Props> = ({ children }) => {
       {/* footer menu start */}
       <Tabbar />
       {/* footer menu end */}
-      <div className='min-h-full w-full overflow-scroll pb-20 sm:pb-0'>
+      <div className='h-screen w-full overflow-scroll pb-20 sm:pb-0'>
         <AnimationDiv className='w-full px-2 py-4'>{children}</AnimationDiv>
       </div>
     </div>
