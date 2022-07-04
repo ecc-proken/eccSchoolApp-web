@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import LoadingSpiner from 'components/atoms/LoadingSpiner';
 import TableData from 'components/atoms/TableData';
 import useGetAttendance from 'hooks/useGetAttendance';
@@ -38,7 +39,7 @@ const Table: VFC = () => {
    * @returns {HTMLTableDataCellElement}
    */
   const tableDataTagCreate = (
-    { timetable, weekday }: Timetable,
+    { timetable = {}, weekday }: Timetable,
     periodNumber: number,
   ) => {
     // 曜日が一致したら背景を変更する
@@ -99,6 +100,8 @@ const Table: VFC = () => {
                 09:15 ~ 10:45
               </span>
             </td>
+            {!timetableData &&
+              [...new Array(5)].fill(0).map((n, i) => <TableData key={i} />)}
             {timetableData?.map((timetable) =>
               tableDataTagCreate(timetable, 1),
             )}
@@ -111,6 +114,8 @@ const Table: VFC = () => {
                 11:00 ~ 12:30
               </span>
             </td>
+            {!timetableData &&
+              [...new Array(5)].fill(0).map((_, i) => <TableData key={i} />)}
             {timetableData?.map((timetable) =>
               tableDataTagCreate(timetable, 2),
             )}
@@ -123,6 +128,8 @@ const Table: VFC = () => {
                 13:30 ~ 15:00
               </span>
             </td>
+            {!timetableData &&
+              [...new Array(5)].fill(0).map((n, i) => <TableData key={i} />)}
             {timetableData?.map((timetable) =>
               tableDataTagCreate(timetable, 3),
             )}
@@ -135,6 +142,8 @@ const Table: VFC = () => {
                 15:15 ~ 16:45
               </span>
             </td>
+            {!timetableData &&
+              [...new Array(5)].fill(0).map((n, i) => <TableData key={i} />)}
             {timetableData?.map((timetable) =>
               tableDataTagCreate(timetable, 4),
             )}
@@ -147,6 +156,8 @@ const Table: VFC = () => {
                 17:00 ~ 18:30
               </span>
             </td>
+            {!timetableData &&
+              [...new Array(5)].fill(0).map((n, i) => <TableData key={i} />)}
             {timetableData?.map((timetable) =>
               tableDataTagCreate(timetable, 5),
             )}
