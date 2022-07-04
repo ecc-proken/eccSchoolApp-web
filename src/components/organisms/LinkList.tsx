@@ -4,6 +4,14 @@ import LinkItem from 'components/molecules/LinkItem';
 
 const linkData = [
   {
+    title: '質問 / 要望 / バグ報告 のお問い合わせ',
+    url: 'https://forms.gle/YSzZtB6EbFh3UwSr5',
+  },
+  {
+    title: 'アプリのレビューを書いて開発を応援する',
+    url: 'https://forms.gle/tsXfXPJJWBsiC7aCA',
+  },
+  {
     title: '公式学生アプリ',
     url: 'https://comp-app.ecc-sv.com/app',
   },
@@ -21,19 +29,19 @@ const linkData = [
   },
   {
     title: 'SPIドリル',
-    url: 'https://lines-spi.education.ne.jp/compecc/',
+    url: 'https://lines-spi.education.ne.jp/compecc',
+  },
+  {
+    title: '模擬面接予約サイト（キャリアセンターサポート室）',
+    url: 'https://airrsv.net/ccsmensetsu/calendar',
+  },
+  {
+    title: '学校連絡先',
+    url: 'https://sulfuric-grouse-843.notion.site/2ff54f9514494fa0a1b7e7554dac4a14',
   },
   {
     title: 'Web Design Course Portal',
     url: 'https://enshrined-hen-e2d.notion.site/Web-Design-Course-Portal-e9bf669c5e604f96ae260cbd9529c904',
-  },
-  {
-    title: '質問 / 要望 / バグ報告 のお問い合わせ',
-    url: 'https://forms.gle/YSzZtB6EbFh3UwSr5',
-  },
-  {
-    title: 'アプリのレビューを書いて応援してあげる',
-    url: 'https://forms.gle/tsXfXPJJWBsiC7aCA',
   },
   {
     title: 'webアプリのGitHub',
