@@ -51,12 +51,14 @@ const linkData = [
 
 const LinkList: VFC = () => {
   return (
-    <div className='bg-white shadow overflow-hidden sm:rounded-md'>
-      <ul className='divide-y divide-gray-200'>
-        {linkData.map((dt) => (
-          <LinkItem key={dt.title} title={dt.title} url={dt.url} />
-        ))}
-      </ul>
+    <div className='pb-14'>
+      <div className='bg-white shadow overflow-hidden sm:rounded-md'>
+        <ul className='divide-y divide-gray-200'>
+          {linkData.map((dt) => (
+            <LinkItem key={dt.title} title={dt.title} url={dt.url} />
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
