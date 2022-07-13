@@ -64,7 +64,7 @@ const Calendar: VFC = () => {
           setIsLoading(true);
           setCurrentDate(a);
         }}
-        className='h-full text-xs md:text-sm'
+        className='h-full text-xs md:text-sm pb-24'
         views={['month']}
       />
     </>

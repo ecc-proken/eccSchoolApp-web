@@ -73,8 +73,8 @@ const NewsList: VFC = () => {
         </div>
       </div>
 
-      <div className='bg-white shadow overflow-hidden sm:rounded-md'>
-        <ul className='divide-y divide-gray-200 pb-14 md:pb-0'>
+      <div className='bg-white shadow overflow-hidden sm:rounded-md pb-20'>
+        <ul className='divide-y divide-gray-200 md:pb-0'>
           {newsData
             ?.filter((d) =>
               filterName.length !== 0 ? filterName.includes(d.tag) : true,

@@ -68,7 +68,7 @@ const Table: VFC = () => {
     <>
       {isLoading && <LoadingSpiner />}
 
-      <table className='min-w-full text-center h-[94%]'>
+      <table className='min-w-full text-center h-[90%]'>
         <thead className='border bg-accent'>
           <tr>
             <th className='w-1/6 text-sm md:text-base font-bold text-white px-3 py-2 md:px-6 md:py-4'>
@@ -169,7 +169,7 @@ const Table: VFC = () => {
         disabled={fetchAttendanceData.isLoading}
         type='button'
         onClick={attendanceModeHandler}
-        className='fixed bottom-16 md:bottom-4 left-2/4 -translate-x-1/2 w-40 text-white bg-accent hover:opacity-70 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 inline-flex items-center justify-center transition-all duration-300 ease-in-out hover:shadow-2xl focus:shadow-2xl'
+        className='fixed bottom-24 md:bottom-4 left-2/4 -translate-x-1/2 w-40 text-white bg-accent hover:opacity-70 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 inline-flex items-center justify-center transition-all duration-300 ease-in-out hover:shadow-2xl focus:shadow-2xl'
       >
         {fetchAttendanceData.isLoading && (
           <svg

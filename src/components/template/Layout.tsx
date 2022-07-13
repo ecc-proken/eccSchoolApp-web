@@ -37,7 +37,7 @@ const Layout: VFC<Props> = ({ children }) => {
       {/* footer menu start */}
       <Tabbar />
       {/* footer menu end */}
-      <div className='h-screen w-full overflow-scroll pb-20 sm:pb-0'>
+      <div className='h-screen w-full overflow-scroll'>
         <AnimationDiv className='w-full px-2 py-4'>{children}</AnimationDiv>
       </div>
     </div>

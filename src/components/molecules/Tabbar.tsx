@@ -7,7 +7,7 @@ const Tabbar: VFC = () => {
   const { pathname } = useLocation();
 
   return (
-    <div className='bg-gray-50 sm:hidden fixed bottom-0 left-0 w-full h-12 flex z-50'>
+    <div className='bg-gray-50 sm:hidden fixed bottom-0 left-0 w-full h-12 flex z-50 box-content pb-6'>
       {tabDataList.map(({ pageName, icon, path }) => (
         <TabItem
           key={pageName}
