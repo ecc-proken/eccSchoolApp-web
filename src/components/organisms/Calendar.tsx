@@ -1,4 +1,4 @@
-import { VFC, useState } from 'react';
+import { VFC, useState, useEffect } from 'react';
 
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import format from 'date-fns/format';
@@ -8,9 +8,9 @@ import getDay from 'date-fns/getDay';
 import ja from 'date-fns/locale/ja';
 
 import { Calendar as BigCalendar, dateFnsLocalizer } from 'react-big-calendar';
-import useGetEvents from 'hooks/useGetEvents';
-import { CalendarEvent } from 'types/event';
+import useGetEvents, { eventAtom } from 'hooks/useGetEvents';
 import LoadingSpiner from 'components/atoms/LoadingSpiner';
+import { useRecoilState } from 'recoil';
 
 const locales = {
   ja,
@@ -37,19 +37,27 @@ const localizer = dateFnsLocalizer({
   locales,
 });
 
-const now = new Date();
+const currentDate = new Date();
 const Calendar: VFC = () => {
-  const [events, setEvents] = useState<CalendarEvent[]>();
-  const [currentDate, setCurrentDate] = useState(now);
   const [isLoading, setIsLoading] = useState(true);
+  const [date, setDate] = useState(currentDate);
+  const [events] = useRecoilState(
+    eventAtom(`${date.getFullYear()}-${date.getMonth() + 1}`),
+  );
+
   useGetEvents({
-    year: currentDate.getFullYear(),
-    month: currentDate.getMonth() + 1,
-  }).then((d) => {
-    setIsLoading(false);
-    if (JSON.stringify(events) === JSON.stringify(d)) return;
-    setEvents(d);
+    year: date.getFullYear(),
+    month: date.getMonth() + 1,
   });
+
+  useEffect(() => {
+    setIsLoading(true);
+    if (events !== null) setIsLoading(false);
+  }, [events]);
+
+  const onNavigate = (d: Date) => {
+    setDate(d);
+  };
 
   return (
     <>
@@ -58,12 +66,9 @@ const Calendar: VFC = () => {
       <BigCalendar
         localizer={localizer}
         messages={messages}
-        events={events}
+        events={events || []}
         toolbar
-        onNavigate={(a) => {
-          setIsLoading(true);
-          setCurrentDate(a);
-        }}
+        onNavigate={onNavigate}
         className='h-full text-xs md:text-sm pb-24'
         views={['month']}
       />

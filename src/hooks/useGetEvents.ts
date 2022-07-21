@@ -1,13 +1,18 @@
 import Event, { CalendarEvent } from 'types/event';
 import axios from 'axios';
 import userDataState from 'globalState/userDataState';
-import { useRecoilValue } from 'recoil';
+import { atomFamily, useRecoilState, useRecoilValue } from 'recoil';
 import UserData from 'types/userInfo';
 
 type SelectedDate = {
   year: number;
   month: number;
 };
+
+export const eventAtom = atomFamily<null | CalendarEvent[], string>({
+  key: 'eventAtom',
+  default: null,
+});
 
 const getEvents = async (
   userData: UserData,
@@ -30,7 +35,15 @@ const getEvents = async (
 
 const useGetEvents = (selectedDate: SelectedDate) => {
   const userData = useRecoilValue(userDataState);
-  return getEvents(userData, selectedDate);
+  const [event, setEvent] = useRecoilState(
+    eventAtom(`${selectedDate.year}-${selectedDate.month}`),
+  );
+  if (event === null) {
+    getEvents(userData, selectedDate).then((d) => {
+      setEvent(d);
+    });
+  }
+  return event;
 };
 
 export default useGetEvents;
