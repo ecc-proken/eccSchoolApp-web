@@ -10,3 +10,16 @@ body,
   font-family: 'Noto Sans JP', sans-serif;
   height: 100%;
 }
+
+.rbc-toolbar {
+  gap: 16px;
+  font-size: 0.8rem;
+}
+.rbc-toolbar button {
+  padding: 8px;
+}
+.rbc-toolbar-label {
+  order: 1;
+  display: block;
+  width: 350px;
+}

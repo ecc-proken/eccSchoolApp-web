@@ -17,13 +17,21 @@ const locales = {
 };
 
 const messages = {
+  date: '日付',
+  time: '時間',
+  event: '予定',
+  allDay: '終日',
+  work_week: '週',
+  yesterday: '昨日',
+  tomorrow: '明日',
+
   week: '1週間',
   day: '1日',
-  month: '1ヶ月',
+  month: 'カレンダー',
   previous: '先月',
   next: '翌月',
-  today: '今日',
-  agenda: '予定',
+  today: '今月',
+  agenda: 'リスト',
 
   noEventsInRange: '予定がありません',
   showMore: (total: number) => `+${total} more`,
@@ -69,8 +77,9 @@ const Calendar: VFC = () => {
         events={events || []}
         toolbar
         onNavigate={onNavigate}
-        className='h-full text-xs md:text-sm pb-24'
-        views={['month']}
+        className='h-full text-xs md:text-sm pb-24 gap-4'
+        views={['month', 'agenda']}
+        popup
       />
     </>
   );
