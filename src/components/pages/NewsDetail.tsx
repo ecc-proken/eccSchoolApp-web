@@ -6,7 +6,7 @@ import NotificationDetail from 'components/organisms/NotificationDetail';
 const NewsDetail: VFC = () => {
   return (
     <Layout>
-      <Title pageTitle='時間割' />
+      <Title pageTitle='お知らせ' />
       <NotificationDetail />
     </Layout>
   );

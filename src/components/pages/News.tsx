@@ -6,7 +6,7 @@ import { VFC } from 'react';
 const News: VFC = () => {
   return (
     <Layout>
-      <Title pageTitle='時間割' />
+      <Title pageTitle='お知らせ' />
       <NewsList />
     </Layout>
   );
