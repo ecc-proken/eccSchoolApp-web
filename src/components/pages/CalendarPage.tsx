@@ -6,7 +6,7 @@ import Calendar from 'components/organisms/Calendar';
 const CalendarPage: VFC = () => {
   return (
     <Layout>
-      <Title pageTitle='時間割' />
+      <Title pageTitle='カレンダー' />
       <Calendar />
     </Layout>
   );
