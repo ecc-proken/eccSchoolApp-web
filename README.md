@@ -1,25 +1,45 @@
-# ECCcomp School App
+<h1 align="center">某情報系専門学校の非公式学生アプリ</h1>
 
-## 環境
-
-```
-npm i
--- or --
-yarn
-```
-
-## ローカルサーバー立ち上げ
+## 🚀 Project Structure
 
 ```
-npm run start
--- or --
-yarn start
+.
+├── README.md
+├── package.json
+├── pnpm-lock.yaml
+├── postcss.config.js
+├── public
+├── src
+│   ├── App.tsx
+│   ├── assets/
+│   ├── components/
+│   │   ├── atoms/
+│   │   ├── molecules/
+│   │   ├── organisms/
+│   │   ├── pages/
+│   │   └── template/
+│   ├── data/
+│   ├── globalState/
+│   ├── hooks/
+│   ├── index.css
+│   ├── index.tsx
+│   ├── react-app-env.d.ts
+│   ├── reportWebVitals.ts
+│   ├── service-worker.ts
+│   ├── serviceWorkerRegistration.ts
+│   ├── setupTests.ts
+│   ├── theme/
+│   └── types/
+├── tailwind.config.js
+└── tsconfig.json
 ```
 
-## ビルド
+## 🧞 Commands
 
-```
-npm run build
--- or --
-yarn build
-```
+All commands are run from the root of the project, from a terminal:
+
+| Command        | Action                                      |
+| :------------- | :------------------------------------------ |
+| `pnpm install` | Installs dependencies                       |
+| `pnpm dev`     | Starts local dev server at `localhost:3000` |
+| `pnpm build`   | Build your production site to `build/`      |
