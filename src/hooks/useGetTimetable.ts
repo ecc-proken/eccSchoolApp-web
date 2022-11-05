@@ -26,8 +26,8 @@ const useGetTimetable = () => {
   return useQuery<Timetable[]>({
     queryKey: 'timetable',
     queryFn,
-    cacheTime: 10000000,
-    staleTime: 10000000,
+    cacheTime: 60 * 60 * 1000,
+    staleTime: 60 * 60 * 1000,
   });
 };
 
