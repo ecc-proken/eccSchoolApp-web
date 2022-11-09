@@ -1,4 +1,4 @@
-import tabDataList from 'data/tabDataList';
+import tabList from 'constant/tabList';
 
-const pageNameArray = tabDataList.map((obj) => obj.pageName);
+const pageNameArray = tabList.map((obj) => obj.pageName);
 export type tabName = typeof pageNameArray[number];

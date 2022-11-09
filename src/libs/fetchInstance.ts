@@ -12,7 +12,7 @@ export const fetchInstance = () => {
   });
 };
 
-export const fetchWithJWT = ({ jwt }: { jwt: string }) => {
+export const fetchWithToken = ({ token }: { token: string }) => {
   if (process.env.REACT_APP_API_URL === undefined)
     throw new Error('API_URL is not defined');
 
@@ -20,7 +20,7 @@ export const fetchWithJWT = ({ jwt }: { jwt: string }) => {
     baseURL: process.env.REACT_APP_API_URL,
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${jwt}`,
+      Authorization: `Bearer ${token}`,
     },
   });
 };

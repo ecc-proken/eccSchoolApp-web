@@ -3,7 +3,7 @@ import NewsItem from 'components/molecules/NewsItem';
 import useGetNews from 'hooks/useGetNews';
 import { useState, VFC } from 'react';
 import { useQueryClient } from 'react-query';
-import colors from 'theme/color';
+import colors from 'constant/color';
 import News from 'types/news';
 import ReactGA from 'react-ga4';
 

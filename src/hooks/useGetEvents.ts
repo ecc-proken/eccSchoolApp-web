@@ -1,8 +1,8 @@
 import Event, { CalendarEvent } from 'types/event';
 import axios from 'axios';
-import userDataState from 'globalState/userDataState';
+import tokenAtom from 'atom/tokenAtom';
 import { atomFamily, useRecoilState, useRecoilValue } from 'recoil';
-import UserData from 'types/userInfo';
+import Token from 'types/userInfo';
 
 type SelectedDate = {
   year: number;
@@ -15,14 +15,14 @@ export const eventAtom = atomFamily<null | CalendarEvent[], string>({
 });
 
 const getEvents = async (
-  userData: UserData,
+  token: Token,
   selectedDate: SelectedDate,
 ): Promise<CalendarEvent[]> => {
   const { data } = await axios.post<Event[]>(
     `${process.env.REACT_APP_API_URL}/calendar/${selectedDate.year}/${
       selectedDate.month < 10 ? `0${selectedDate.month}` : selectedDate.month
     }`,
-    userData,
+    token,
   );
 
   return data.map((d) => ({
@@ -34,12 +34,12 @@ const getEvents = async (
 };
 
 const useGetEvents = (selectedDate: SelectedDate) => {
-  const userData = useRecoilValue(userDataState);
+  const token = useRecoilValue(tokenAtom);
   const [event, setEvent] = useRecoilState(
     eventAtom(`${selectedDate.year}-${selectedDate.month}`),
   );
   if (event === null) {
-    getEvents(userData, selectedDate).then((d) => {
+    getEvents(token, selectedDate).then((d) => {
       setEvent(d);
     });
   }

@@ -5,13 +5,12 @@ import './index.css';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
-import userDataState from 'globalState/userDataState';
+import tokenAtom from 'atom/tokenAtom';
 
 const initializeState = (mutableSnapshot: MutableSnapshot) => {
-  const id = localStorage.getItem('id');
-  const pw = localStorage.getItem('pw');
-  if (id !== null || pw !== null)
-    mutableSnapshot.set(userDataState, { id, pw });
+  const localstorageToken = localStorage.getItem('token');
+  if (localstorageToken !== null)
+    mutableSnapshot.set(tokenAtom, { token: localstorageToken });
 };
 
 ReactDOM.render(

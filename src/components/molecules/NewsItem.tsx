@@ -1,7 +1,7 @@
 import { tagList } from 'components/organisms/NewsList';
 import { VFC } from 'react';
 import { Link } from 'react-router-dom';
-import colors from 'theme/color';
+import colors from 'constant/color';
 import type News from 'types/news';
 
 type Props = {

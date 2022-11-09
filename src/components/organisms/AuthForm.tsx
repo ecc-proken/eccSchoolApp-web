@@ -1,7 +1,6 @@
-import axios from 'axios';
 import FormButton from 'components/molecules/FormButton';
 import FormInput from 'components/molecules/FormInput';
-import useUserDataState from 'hooks/useUserDataState';
+import useTokenAtom from 'hooks/useTokenAtom';
 import {
   Dispatch,
   FormEventHandler,
@@ -10,9 +9,10 @@ import {
   VFC,
   useCallback,
 } from 'react';
+import ReactGA from 'react-ga4';
 import { useNavigate } from 'react-router-dom';
 
-import ReactGA from 'react-ga4';
+import { fetchInstance } from '../../libs/fetchInstance';
 
 type Props = {
   setIsLoading: Dispatch<SetStateAction<boolean>>;
@@ -21,15 +21,9 @@ const AuthForm: VFC<Props> = ({ setIsLoading }) => {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
   const [authResult, setAuthResult] = useState<null | boolean>(null);
-  const setUserDataHandler = useUserDataState();
+  const setTokenHandler = useTokenAtom();
   const navigate = useNavigate();
-  /**
-   * input時に発火
-   * stateを更新する
-   * @date 2022-02-23
-   * @param {FormEventHandler} { currentTarget }
-   * @returns {void}
-   */
+
   const onInput: FormEventHandler<HTMLInputElement> = useCallback(
     ({ currentTarget }) => {
       switch (currentTarget.name) {
@@ -47,40 +41,30 @@ const AuthForm: VFC<Props> = ({ setIsLoading }) => {
     [setId, setPw],
   );
 
-  /**
-   * submit時に発火
-   * ログイン情報が正しいかを判断し、正しければatomにデータをセットする。
-   * 正しくない場合はエラ〜メッセージを出力する
-   * @date 2022-02-23
-   * @param {FormEventHandler} e
-   * @returns {void}
-   */
   const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    axios
-      .post<{
-        message: 'success' | 'error';
-        status: 200 | 401;
-      }>(`${process.env.REACT_APP_API_URL}/signin`, {
-        id,
-        pw,
-      })
-      .then((data) => {
-        if (!data) return console.error('通信に失敗しました。');
-        if (data.status !== 200) return setAuthResult(false);
-        setAuthResult(true);
-        setUserDataHandler(id, pw);
-        ReactGA.event('signin_success');
-        navigate('/');
-        setIsLoading(false);
-      })
-      .catch(() => {
-        // eslint-disable-next-line no-alert
-        alert('ログインに失敗しました');
-        setIsLoading(false);
-        ReactGA.event('signin_failure');
-      });
+    try {
+      const { data, status } = await fetchInstance().post<{ token: string }>(
+        '/signin',
+        {
+          id,
+          pw,
+        },
+      );
+      if (!data) throw new Error('通信に失敗しました。');
+      if (status !== 200) return setAuthResult(false);
+      setAuthResult(true);
+      setTokenHandler(data.token);
+      ReactGA.event('signin_success');
+      navigate('/');
+      setIsLoading(false);
+    } catch (error) {
+      // eslint-disable-next-line no-alert
+      alert('ログインに失敗しました');
+      ReactGA.event('signin_failure');
+    }
+    setIsLoading(false);
   };
 
   return (

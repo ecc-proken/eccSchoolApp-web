@@ -1,4 +1,4 @@
-import tabDataList from 'data/tabDataList';
+import tabList from 'constant/tabList';
 import { VFC } from 'react';
 import TabItem from 'components/atoms/TabItem';
 import { useLocation } from 'react-router-dom';
@@ -8,7 +8,7 @@ const Tabbar: VFC = () => {
 
   return (
     <div className='bg-gray-50 sm:hidden fixed bottom-0 left-0 w-full h-12 flex z-50 box-content pb-6'>
-      {tabDataList.map(({ pageName, icon, path }) => (
+      {tabList.map(({ pageName, icon, path }) => (
         <TabItem
           key={pageName}
           icon={icon}

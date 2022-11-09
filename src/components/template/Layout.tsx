@@ -1,7 +1,7 @@
 import { memo, ReactNode, VFC } from 'react';
 import NavItem from 'components/molecules/NavItem';
 import Logo from 'assets/logo.svg';
-import tabDataList from 'data/tabDataList';
+import tabList from 'constant/tabList';
 import { useLocation } from 'react-router-dom';
 import AnimationDiv from './AnimationDiv';
 import Tabbar from 'components/molecules/Tabbar';
@@ -21,7 +21,7 @@ const Layout: VFC<Props> = ({ children }) => {
             <img src={Logo} alt='logo' className='h-16' />
           </div>
           <nav className='mt-6'>
-            {tabDataList.map(({ icon, pageName, path }) => (
+            {tabList.map(({ icon, pageName, path }) => (
               <NavItem
                 icon={icon}
                 title={pageName}

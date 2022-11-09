@@ -3,7 +3,7 @@ import { useEffect, VFC } from 'react';
 import Home from './components/pages/Home';
 import Signin from './components/pages/Signin';
 import { useRecoilValue } from 'recoil';
-import userDataState from 'globalState/userDataState';
+import tokenAtom from 'atom/tokenAtom';
 import NotFound from 'components/pages/NotFound';
 import Timetable from 'components/pages/Timetable';
 import NewsDetail from 'components/pages/NewsDetail';
@@ -27,18 +27,13 @@ const queryClient = new QueryClient({
 });
 
 const App: VFC = () => {
-  const userData = useRecoilValue(userDataState);
+  const token = useRecoilValue(tokenAtom);
   const navigate = useNavigate();
   const location = useLocation();
   usePageTracking();
 
-  /**
-   * userData を取得し null の場合は signin に遷移する
-   * @date 2022-02-23
-   * @returns {void}
-   */
   useEffect(() => {
-    if (userData.id === null || userData.pw === null) navigate('/signin');
+    if (token.token === null) navigate('/signin');
   }, []);
 
   return (

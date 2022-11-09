@@ -1,41 +1,17 @@
-import { useEffect, useState, VFC } from 'react';
+import { useState, VFC } from 'react';
 // ToDo: imgを変更する
 import AuthForm from 'components/organisms/AuthForm';
 import Title from 'components/template/Title';
-import { useRecoilState, useResetRecoilState } from 'recoil';
-import userDataState from 'globalState/userDataState';
-import axios from 'axios';
-import LoadingSpiner from 'components/atoms/LoadingSpiner';
-import { useNavigate } from 'react-router-dom';
+import { useResetRecoilState } from 'recoil';
+import tokenAtom from 'atom/tokenAtom';
 import AnimationDiv from 'components/template/AnimationDiv';
 import authHeroImage from 'assets/auth_heroImage.jpeg';
+import LoadingSpiner from 'components/atoms/LoadingSpiner';
 
 const Signin: VFC = () => {
-  const [userData, setUserData] = useRecoilState(userDataState);
-  const userDataReset = useResetRecoilState(userDataState);
-  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-
-  /**
-   * atom にデータがあれば、ログイン出来るかを確認し出来た場合は ホーム画面 に遷移する
-   * @date 2022-02-23
-   * @returns {void}
-   */
-  useEffect(() => {
-    if (userData.id === null || userData.pw === null) return;
-    setIsLoading(true);
-    axios
-      .post<{
-        message: 'success' | 'error';
-        status: 200 | 401;
-      }>(`${process.env.REACT_APP_API_URL}/signin`, userData)
-      .then(({ data }) => {
-        setIsLoading(false);
-        if (data.status === 401) return userDataReset();
-        setUserData(userData);
-        navigate('/');
-      });
-  }, []);
+  const tokenReset = useResetRecoilState(tokenAtom);
+  tokenReset();
 
   return (
     <AnimationDiv className='bg-white h-full relative'>

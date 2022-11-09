@@ -14,7 +14,7 @@ import HomeItem from 'components/organisms/HomeItem';
 import Title from 'components/template/Title';
 import useGetAllData from 'hooks/useGetAllData';
 import { useResetRecoilState } from 'recoil';
-import userDataState from 'globalState/userDataState';
+import tokenAtom from 'atom/tokenAtom';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -23,7 +23,7 @@ import { QueryCache } from 'react-query';
 const Home: VFC = () => {
   const queryCache = new QueryCache();
   useGetAllData();
-  const resetUserDataState = useResetRecoilState(userDataState);
+  const resetTokenAtom = useResetRecoilState(tokenAtom);
   const navigation = useNavigate();
   /**
    * localstrage の中身を削除して state を default に戻します。
@@ -31,7 +31,7 @@ const Home: VFC = () => {
    * @returns {void}
    */
   const signout = () => {
-    resetUserDataState();
+    resetTokenAtom();
     localStorage.clear();
     queryCache.clear();
     navigation('/signin');
