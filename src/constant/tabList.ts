@@ -6,7 +6,7 @@ import {
   faHome,
 } from '@fortawesome/free-solid-svg-icons';
 
-const tabDataList = [
+const tabList = [
   {
     path: '/',
     pageName: 'ホーム',
@@ -34,4 +34,4 @@ const tabDataList = [
   },
 ] as const;
 
-export default tabDataList;
+export default tabList;
