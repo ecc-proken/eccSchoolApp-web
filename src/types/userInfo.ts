@@ -1,5 +1,4 @@
-type UserData = {
-  id: string | null;
-  pw: string | null;
+type Token = {
+  token: string | null;
 };
-export default UserData;
+export default Token;
