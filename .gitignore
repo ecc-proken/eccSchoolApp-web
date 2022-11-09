@@ -25,4 +25,4 @@ yarn-error.log*
 # http tests
 request.http
 
-.env
+.env*
