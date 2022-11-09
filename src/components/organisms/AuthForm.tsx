@@ -12,7 +12,7 @@ import {
 import ReactGA from 'react-ga4';
 import { useNavigate } from 'react-router-dom';
 
-import { fetchInstance } from '../../libs/fetchInstance';
+import { fetchInstance } from 'libs/fetchInstance';
 
 type Props = {
   setIsLoading: Dispatch<SetStateAction<boolean>>;
