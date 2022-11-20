@@ -50,6 +50,7 @@ module.exports = {
     'consistent-return': 'off',
     'no-useless-return': 'off',
     'jsx-a11y/tabindex-no-positive': 'off',
+    'react/require-default-props': 'off',
   },
   settings: {
     'import/resolver': {
