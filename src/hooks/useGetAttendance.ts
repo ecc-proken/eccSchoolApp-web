@@ -1,16 +1,15 @@
 import { useQuery } from 'react-query';
-import axios from 'axios';
 import userAtom from 'atom/userAtom';
 import { useRecoilValue } from 'recoil';
 import Attendance from 'types/attendance';
 import User from 'types/user';
+import { fetchWithToken } from 'libs/fetchInstance';
 
 const getAttendance = async (userValue: User) => {
-  const { data } = await axios.post<Attendance[]>(
-    `${process.env.REACT_APP_API_URL}/attendance`,
-    userValue,
+  const { data } = await fetchWithToken(userValue).get<Attendance[]>(
+    '/attendance',
   );
-  return data.map((a) => ({ ...a, title: a.title.replace('?', '') }));
+  return data;
 };
 
 const useGetAttendance = () => {
