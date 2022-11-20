@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import LoadingSpiner from 'components/atoms/LoadingSpiner';
 import TableData from 'components/atoms/TableData';
 import useGetAttendance from 'hooks/useGetAttendance';
