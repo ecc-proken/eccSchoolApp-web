@@ -38,7 +38,7 @@ const NewsList: VFC = () => {
   };
 
   return (
-    <>
+    <div className='pb-20 sm:pb-0'>
       {isLoading && <LoadingSpiner />}
       <div className='w-full shadow p-5 rounded-lg bg-white mb-2'>
         <div className='flex items-center justify-between'>
@@ -73,7 +73,7 @@ const NewsList: VFC = () => {
         </div>
       </div>
 
-      <div className='bg-white shadow overflow-hidden sm:rounded-md pb-20'>
+      <div className='bg-white shadow overflow-hidden sm:rounded-md'>
         <ul className='divide-y divide-gray-200 md:pb-0'>
           {newsData
             ?.filter((d) =>
@@ -84,7 +84,7 @@ const NewsList: VFC = () => {
             ))}
         </ul>
       </div>
-    </>
+    </div>
   );
 };
 
