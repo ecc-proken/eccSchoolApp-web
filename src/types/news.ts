@@ -8,10 +8,10 @@ type News = {
 
 export type NewsDetail = {
   title: string;
-  data: string;
+  body: string;
   date: string;
   tag: string;
-  attachments: string[];
+  attachments?: string[];
 };
 
 export default News;

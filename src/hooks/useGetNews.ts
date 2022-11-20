@@ -1,15 +1,12 @@
 import User from 'types/user';
 import { useQuery } from 'react-query';
-import axios from 'axios';
 import userAtom from 'atom/userAtom';
 import { useRecoilValue } from 'recoil';
 import News from 'types/news';
+import { fetchWithToken } from 'libs/fetchInstance';
 
 const getNews = async (userValue: User) => {
-  const { data } = await axios.post<News[]>(
-    `${process.env.REACT_APP_API_URL}/news`,
-    userValue,
-  );
+  const { data } = await fetchWithToken(userValue).get<News[]>('/news');
   return data;
 };
 
