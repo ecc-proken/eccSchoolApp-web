@@ -1,4 +1,4 @@
-import { useState, VFC } from 'react';
+import { useEffect, useState, VFC } from 'react';
 // ToDo: imgを変更する
 import AuthForm from 'components/organisms/AuthForm';
 import Title from 'components/template/Title';
@@ -11,7 +11,9 @@ import LoadingSpiner from 'components/atoms/LoadingSpiner';
 const Signin: VFC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const tokenReset = useResetRecoilState(tokenAtom);
-  tokenReset();
+  useEffect(() => {
+    tokenReset();
+  }, []);
 
   return (
     <AnimationDiv className='bg-white h-full relative'>
