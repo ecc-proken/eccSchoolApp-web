@@ -13,6 +13,7 @@ import ReactGA from 'react-ga4';
 import { useNavigate } from 'react-router-dom';
 
 import { fetchInstance } from 'libs/fetchInstance';
+import User from 'types/user';
 
 type Props = {
   setIsLoading: Dispatch<SetStateAction<boolean>>;
@@ -45,17 +46,17 @@ const AuthForm: VFC<Props> = ({ setIsLoading }) => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const { data, status } = await fetchInstance().post<{ token: string }>(
+      const { data: user, status } = await fetchInstance().post<User>(
         '/signin',
         {
           id,
           pw,
         },
       );
-      if (!data) throw new Error('通信に失敗しました。');
+      if (!user) throw new Error('通信に失敗しました。');
       if (status !== 200) return setAuthResult(false);
       setAuthResult(true);
-      setTokenHandler(data.token);
+      setTokenHandler(user);
       ReactGA.event('signin_success');
       navigate('/');
       setIsLoading(false);

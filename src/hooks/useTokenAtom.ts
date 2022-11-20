@@ -1,5 +1,6 @@
-import tokenAtom from 'atom/tokenAtom';
+import userAtom from 'atom/userAtom';
 import { useSetRecoilState } from 'recoil';
+import User from 'types/user';
 
 /**
  * atomとlocalstorageにデータを格納する関数を返します。
@@ -7,10 +8,12 @@ import { useSetRecoilState } from 'recoil';
  * @returns {Function}
  */
 const useTokenAtom = () => {
-  const setToken = useSetRecoilState(tokenAtom);
-  const setTokenHandler = (token: string) => {
-    setToken({ token });
+  const setUser = useSetRecoilState(userAtom);
+  const setTokenHandler = ({ token, uuid }: User) => {
+    if (!token || !uuid) throw new Error('token or uuid is not defined');
+    setUser({ token, uuid });
     localStorage.setItem('token', token);
+    localStorage.setItem('token', uuid);
   };
   return setTokenHandler;
 };

@@ -14,7 +14,7 @@ import HomeItem from 'components/organisms/HomeItem';
 import Title from 'components/template/Title';
 import useGetAllData from 'hooks/useGetAllData';
 import { useResetRecoilState } from 'recoil';
-import tokenAtom from 'atom/tokenAtom';
+import userAtom from 'atom/userAtom';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -23,7 +23,7 @@ import { QueryCache } from 'react-query';
 const Home: VFC = () => {
   const queryCache = new QueryCache();
   useGetAllData();
-  const resetTokenAtom = useResetRecoilState(tokenAtom);
+  const resetTokenAtom = useResetRecoilState(userAtom);
   const navigation = useNavigate();
   /**
    * localstrage の中身を削除して state を default に戻します。

@@ -1,10 +1,10 @@
 import { useState, VFC } from 'react';
-import { useGetNewsDetail } from 'hooks/useGetNews';
 import { useParams } from 'react-router-dom';
 import { NewsDetail } from 'types/news';
 import LoadingSpiner from 'components/atoms/LoadingSpiner';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileAlt } from '@fortawesome/free-solid-svg-icons';
+import useGetNewsDetail from 'hooks/useGetNewsDetail';
 
 const NotificationDetail: VFC = () => {
   const params = useParams();

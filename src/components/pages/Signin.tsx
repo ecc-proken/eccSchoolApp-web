@@ -3,14 +3,14 @@ import { useEffect, useState, VFC } from 'react';
 import AuthForm from 'components/organisms/AuthForm';
 import Title from 'components/template/Title';
 import { useResetRecoilState } from 'recoil';
-import tokenAtom from 'atom/tokenAtom';
+import userAtom from 'atom/userAtom';
 import AnimationDiv from 'components/template/AnimationDiv';
 import authHeroImage from 'assets/auth_heroImage.jpeg';
 import LoadingSpiner from 'components/atoms/LoadingSpiner';
 
 const Signin: VFC = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const tokenReset = useResetRecoilState(tokenAtom);
+  const tokenReset = useResetRecoilState(userAtom);
   useEffect(() => {
     tokenReset();
   }, []);
