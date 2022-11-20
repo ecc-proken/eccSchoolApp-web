@@ -1,4 +1,5 @@
 export type subjectData = {
+  period: string;
   classroom: string;
   subjectTitle: string;
   teacher: string;
@@ -7,8 +8,6 @@ export type subjectData = {
 type Timetable = {
   date: string;
   weekday: string;
-  timetable: {
-    [key: number]: subjectData;
-  };
+  timetable: subjectData[];
 };
 export default Timetable;

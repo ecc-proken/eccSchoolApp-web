@@ -1,20 +1,26 @@
 import User from 'types/user';
 import { useQuery } from 'react-query';
-import axios from 'axios';
 import userAtom from 'atom/userAtom';
 import { useRecoilValue } from 'recoil';
 import Timetable from 'types/timetable';
+import { fetchWithToken } from 'libs/fetchInstance';
 
 const getTimetable = async (userValue: User) => {
   const timetableData: Timetable[] = await Promise.all(
     [...new Array(5)]
       .map((_, i) => i + 1)
       .map(async (number) => {
-        const { data } = await axios.post<Timetable>(
-          `${process.env.REACT_APP_API_URL}/timetable/${number}`,
-          userValue,
+        const { data } = await fetchWithToken(userValue).get<Timetable>(
+          `/timetable/${number}`,
         );
-        return data;
+        return {
+          ...data,
+          timetable: data.timetable.map((subject) => ({
+            ...subject,
+            period: subject.period.slice(0, 1),
+            subjectTitle: subject.subjectTitle.slice(5),
+          })),
+        };
       }),
   );
   return timetableData;

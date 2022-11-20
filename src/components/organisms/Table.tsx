@@ -31,38 +31,42 @@ const Table: VFC = () => {
 
   const date = new Date();
   const weekdays = ['日', '月', '火', '水', '木', '金', '土'];
-  /**
-   * データとコマ目を受け取り、TableDataコンポーネントを返す
-   * @date 2022-02-26
-   * @param {Timetable} tableData
-   * @param {number} periodNumber
-   * @returns {HTMLTableDataCellElement}
-   */
+
   const tableDataTagCreate = (
-    { timetable = {}, weekday }: Timetable,
+    { timetable = [], weekday }: Timetable,
     periodNumber: number,
   ) => {
-    // 曜日が一致したら背景を変更する
     const selected = weekday === weekdays[date.getDay()];
 
-    if (timetable[periodNumber])
+    const subject = timetable.find(
+      (item) => Number(item.period) === periodNumber,
+    );
+    if (subject) {
       return (
         <TableData
           key={weekday}
           selected={selected}
-          tableData={timetable[periodNumber]}
+          tableData={subject}
           rate={
             isAttendanceMode
               ? attendanceData?.find(
-                  (attendance) =>
-                    timetable[periodNumber].subjectTitle === attendance.title,
+                  (attendance) => subject.subjectTitle === attendance.title,
                 )?.rate
               : undefined
           }
         />
       );
+    }
     return <TableData key={weekday} selected={selected} />;
   };
+
+  const scheduleTime = [
+    { time: '09:15 ~ 10:45', periodNumber: 1 },
+    { time: '11:00 ~ 12:30', periodNumber: 2 },
+    { time: '13:30 ~ 15:00', periodNumber: 3 },
+    { time: '15:15 ~ 16:45', periodNumber: 4 },
+    { time: '17:00 ~ 18:30', periodNumber: 5 },
+  ];
 
   return (
     <>
@@ -92,76 +96,24 @@ const Table: VFC = () => {
           </tr>
         </thead>
         <tbody className='h-full'>
-          <tr className='bg-white border-b'>
-            <td className='text-[12px] md:text-[12px] xl:text-[14px] py-2 border-x text-gray-700'>
-              1限
-              <br />
-              <span className='text-gray-400 text-[10px] md:text-[10px] xl:text-[12px] pt-1 inline-block'>
-                09:15 ~ 10:45
-              </span>
-            </td>
-            {!timetableData &&
-              [...new Array(5)].fill(0).map((n, i) => <TableData key={i} />)}
-            {timetableData?.map((timetable) =>
-              tableDataTagCreate(timetable, 1),
-            )}
-          </tr>
-          <tr className='bg-white border-b'>
-            <td className='text-[12px] md:text-[12px] xl:text-[14px] py-2 border-x text-gray-700'>
-              2限
-              <br />
-              <span className='text-gray-400 text-[10px] md:text-[10px] xl:text-[12px] pt-1 inline-block'>
-                11:00 ~ 12:30
-              </span>
-            </td>
-            {!timetableData &&
-              [...new Array(5)].fill(0).map((_, i) => <TableData key={i} />)}
-            {timetableData?.map((timetable) =>
-              tableDataTagCreate(timetable, 2),
-            )}
-          </tr>
-          <tr className='bg-white border-b'>
-            <td className='text-[12px] md:text-[12px] xl:text-[14px] py-2 border-x text-gray-700'>
-              3限
-              <br />
-              <span className='text-gray-400 text-[10px] md:text-[10px] xl:text-[12px] pt-1 inline-block'>
-                13:30 ~ 15:00
-              </span>
-            </td>
-            {!timetableData &&
-              [...new Array(5)].fill(0).map((n, i) => <TableData key={i} />)}
-            {timetableData?.map((timetable) =>
-              tableDataTagCreate(timetable, 3),
-            )}
-          </tr>
-          <tr className='bg-white border-b'>
-            <td className='text-[12px] md:text-[12px] xl:text-[14px] py-2 border-x text-gray-700'>
-              4限
-              <br />
-              <span className='text-gray-400 text-[10px] md:text-[10px] xl:text-[12px] pt-1 inline-block'>
-                15:15 ~ 16:45
-              </span>
-            </td>
-            {!timetableData &&
-              [...new Array(5)].fill(0).map((n, i) => <TableData key={i} />)}
-            {timetableData?.map((timetable) =>
-              tableDataTagCreate(timetable, 4),
-            )}
-          </tr>
-          <tr className='bg-white border-b'>
-            <td className='text-[12px] md:text-[12px] xl:text-[14px] py-2 border-x text-gray-700'>
-              5限
-              <br />
-              <span className='text-gray-400 text-[10px] md:text-[10px] xl:text-[12px] pt-1 inline-block'>
-                17:00 ~ 18:30
-              </span>
-            </td>
-            {!timetableData &&
-              [...new Array(5)].fill(0).map((n, i) => <TableData key={i} />)}
-            {timetableData?.map((timetable) =>
-              tableDataTagCreate(timetable, 5),
-            )}
-          </tr>
+          {scheduleTime.map(({ time, periodNumber }) => {
+            return (
+              <tr className='bg-white border-b'>
+                <td className='text-[12px] md:text-[12px] xl:text-[14px] py-2 border-x text-gray-700'>
+                  {periodNumber}限
+                  <br />
+                  <span className='text-gray-400 text-[10px] md:text-[10px] xl:text-[12px] pt-1 inline-block'>
+                    {time}
+                  </span>
+                </td>
+                {timetableData
+                  ? timetableData.map((timetable) =>
+                      tableDataTagCreate(timetable, periodNumber),
+                    )
+                  : [0, 1, 2, 3, 4].map((key) => <TableData key={key} />)}
+              </tr>
+            );
+          })}
         </tbody>
       </table>
 
