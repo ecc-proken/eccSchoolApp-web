@@ -33,7 +33,7 @@ const App: VFC = () => {
   usePageTracking();
 
   useEffect(() => {
-    if (userValue.token === undefined) navigate('/signin');
+    if (!userValue.token || !userValue.uuid) navigate('/signin');
   }, []);
 
   return (

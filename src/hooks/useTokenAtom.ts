@@ -13,7 +13,7 @@ const useTokenAtom = () => {
     if (!token || !uuid) throw new Error('token or uuid is not defined');
     setUser({ token, uuid });
     localStorage.setItem('token', token);
-    localStorage.setItem('token', uuid);
+    localStorage.setItem('uuid', uuid);
   };
   return setTokenHandler;
 };
