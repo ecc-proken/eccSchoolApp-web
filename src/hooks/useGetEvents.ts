@@ -1,8 +1,8 @@
 import Event, { CalendarEvent } from 'types/event';
-import axios from 'axios';
 import userAtom from 'atom/userAtom';
 import { atomFamily, useRecoilState, useRecoilValue } from 'recoil';
 import User from 'types/user';
+import { fetchWithToken } from 'libs/fetchInstance';
 
 type SelectedDate = {
   year: number;
@@ -18,16 +18,15 @@ const getEvents = async (
   userValue: User,
   selectedDate: SelectedDate,
 ): Promise<CalendarEvent[]> => {
-  const { data } = await axios.post<Event[]>(
-    `${process.env.REACT_APP_API_URL}/calendar/${selectedDate.year}/${
+  const { data } = await fetchWithToken(userValue).get<Event[]>(
+    `/calendar/${selectedDate.year}/${
       selectedDate.month < 10 ? `0${selectedDate.month}` : selectedDate.month
     }`,
-    userValue,
   );
 
   return data.map((d) => ({
     allDay: true,
-    title: d.plans.title[0],
+    title: d.plans[0].title,
     start: new Date(selectedDate.year, selectedDate.month - 1, Number(d.day)),
     end: new Date(selectedDate.year, selectedDate.month - 1, Number(d.day)),
   }));

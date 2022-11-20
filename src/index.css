@@ -23,3 +23,6 @@ body,
   display: block;
   width: 350px;
 }
+.rbc-event-content {
+  font-size: 10px;
+}
