@@ -8,7 +8,7 @@ import News from 'types/news';
 import ReactGA from 'react-ga4';
 
 export const tagList = [
-  'キャリアセンター（旧 進路指導課）より',
+  'キャリアセンター（旧進路指導課）より',
   '学校からの連絡',
   '図書室からの連絡',
   '事務局からの連絡',
