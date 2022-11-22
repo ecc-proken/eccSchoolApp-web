@@ -18,7 +18,6 @@ const getTimetable = async (userValue: User) => {
           timetable: data.timetable.map((subject) => ({
             ...subject,
             period: subject.period.slice(0, 1),
-            subjectTitle: subject.subjectTitle.slice(5),
           })),
         };
       }),
