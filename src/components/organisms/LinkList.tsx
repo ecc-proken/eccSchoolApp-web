@@ -45,15 +45,11 @@ const linkData = [
   },
   {
     title: 'webアプリのGitHub',
-    url: 'https://github.com/OkazakiRui/eccSchoolApp-web',
+    url: 'https://github.com/RuiOkazaki/eccSchoolApp-web',
   },
   {
-    title: '開発者のTwitter',
-    url: 'https://twitter.com/yoruhanemutaiyo',
-  },
-  {
-    title: '開発者の各種リンク',
-    url: 'https://click.ecc.ac.jp/ecc/rokazaki/',
+    title: 'モバイルアプリのGitHub',
+    url: 'https://github.com/RuiOkazaki/eccSchoolApp-mobile',
   },
 ];
 
