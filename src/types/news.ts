@@ -11,7 +11,7 @@ export type NewsDetail = {
   body: string;
   date: string;
   tag: string;
-  attachments?: string[];
+  attachment?: string[];
 };
 
 export default News;

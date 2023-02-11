@@ -27,7 +27,7 @@ const NotificationDetail: VFC = () => {
               // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{ __html: news.body }}
             />
-            {news.attachments?.map((url, i) => (
+            {news.attachment?.map((url, i) => (
               <a
                 href={url}
                 target='_blank'
