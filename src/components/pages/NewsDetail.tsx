@@ -1,15 +1,15 @@
 import Layout from 'components/template/Layout';
 import Title from 'components/template/Title';
 import { VFC } from 'react';
-import NotificationDetail from 'components/organisms/NotificationDetail';
+import NewsDetail from 'components/organisms/NewsDetail';
 
-const NewsDetail: VFC = () => {
+const NewsDetailPage: VFC = () => {
   return (
     <Layout>
       <Title pageTitle='お知らせ' />
-      <NotificationDetail />
+      <NewsDetail />
     </Layout>
   );
 };
 
-export default NewsDetail;
+export default NewsDetailPage;

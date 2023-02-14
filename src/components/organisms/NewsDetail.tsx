@@ -1,15 +1,24 @@
-import { VFC } from 'react';
+import { useEffect, useState, VFC } from 'react';
 import { useParams } from 'react-router-dom';
 import LoadingSpiner from 'components/atoms/LoadingSpiner';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileAlt } from '@fortawesome/free-solid-svg-icons';
 import useGetNewsDetail from 'hooks/useGetNewsDetail';
 
-const NotificationDetail: VFC = () => {
+const NewsDetail: VFC = () => {
   const params = useParams();
-  const { data: news, isLoading } = useGetNewsDetail(params.id!);
+  const [isLodading, setIsLoading] = useState(true);
+  const news = useGetNewsDetail(params.id!);
 
-  if (isLoading || news === undefined) return <LoadingSpiner />;
+  useEffect(() => {
+    if (news != null) {
+      setIsLoading(false);
+    }
+  }, [news]);
+
+  if (isLodading) return <LoadingSpiner />;
+
+  if (news === null) return <div />;
 
   return (
     <div className='rounded-2xl p-4 pb-20'>
@@ -29,6 +38,7 @@ const NotificationDetail: VFC = () => {
             />
             {news.attachment?.map((url, i) => (
               <a
+                key={url}
                 href={url}
                 target='_blank'
                 rel='noreferrer'
@@ -45,4 +55,4 @@ const NotificationDetail: VFC = () => {
   );
 };
 
-export default NotificationDetail;
+export default NewsDetail;
